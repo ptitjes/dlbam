@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sections",
+  "info": {
+    "name": "Section"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "displayInNavigation": {
+      "type": "boolean"
+    },
+    "pages": {
+      "via": "section",
+      "collection": "page"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    }
+  }
+}

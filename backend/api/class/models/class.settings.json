@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "classes",
+  "info": {
+    "name": "Class"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "classType": {
+      "via": "classes",
+      "model": "class-type"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "class_types",
+  "info": {
+    "name": "Class Type"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "classes": {
+      "collection": "class",
+      "via": "classType"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "center center"
+    }
+  }
+}
