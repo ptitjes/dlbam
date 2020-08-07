@@ -39,14 +39,55 @@ export const theme: DefaultTheme = {
 export const GlobalStyle = createGlobalStyle`
   ${normalize}
 
+  @font-face {
+      font-family: 'Coiny';
+      src: url('/fonts/coiny-regular-webfont.woff2') format('woff2'),
+           url('/fonts/coiny-regular-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  
+  }
+  
+  @font-face {
+      font-family: 'Montserrat';
+      src: url('/fonts/montserrat-regular-webfont.woff2') format('woff2'),
+           url('/fonts/montserrat-regular-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+  }
+
+  @font-face {
+      font-family: 'Montserrat';
+      src: url('/fonts/montserrat-italic-webfont.woff2') format('woff2'),
+           url('/fonts/montserrat-italic-webfont.woff') format('woff');
+      font-weight: normal;
+      font-style: italic;
+  }
+  
+  @font-face {
+      font-family: 'Montserrat';
+      src: url('/fonts/montserrat-semibold-webfont.woff2') format('woff2'),
+           url('/fonts/montserrat-semibold-webfont.woff') format('woff');
+      font-weight: bold;
+      font-style: normal;
+  }
+  
+  @font-face {
+      font-family: 'Montserrat';
+      src: url('/fonts/montserrat-semibolditalic-webfont.woff2') format('woff2'),
+           url('/fonts/montserrat-semibolditalic-webfont.woff') format('woff');
+      font-weight: bold;
+      font-style: italic;
+  }
+
   html,
   body {
     padding: 0;
     background-color: ghostwhite;
     color: #555555;
 
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 16px;
+    font-family: Montserrat;
+    font-size: 18px;
     font-weight: normal;
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
