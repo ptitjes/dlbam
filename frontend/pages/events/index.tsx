@@ -8,8 +8,8 @@ import { API_URL, Event, getAllEvents } from "../../lib/api"
 
 const EventCardStyles = styled.div`
   border-radius: 16px;
-  border: solid 0.5px e1e1e3;
-  box-shadow: 9px 9px 10px #e1e1e3;
+  border: solid 0.5px #e1e1e3;
+  box-shadow: 2px 2px 10px #e1e1e3;
 
   height: 100%;
   display: flex;

@@ -1,7 +1,7 @@
 import { DefaultTheme, createGlobalStyle } from "styled-components"
 import normalize from "styled-normalize"
 
-const breakpoints = {
+export const breakpoints = {
   small: 640,
   medium: 960,
   large: 1200,

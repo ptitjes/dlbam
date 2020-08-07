@@ -40,6 +40,22 @@ export interface Article {
   content: string
 }
 
+export interface ClassType {
+  title: string
+  slug: string
+  image: Media
+  imagePosition: string
+  description: string
+  classes: Class[]
+}
+
+export interface Class {
+  id: number
+  title: string
+  description: string
+  price: number
+}
+
 export async function getAllSections(): Promise<Section[]> {
   const res = await fetch(`${API_URL}/sections`)
   return await res.json()
@@ -52,14 +68,38 @@ export async function getAllPages(sectionSlug?: string): Promise<Page[]> {
   return await Promise.all(data.map(mapPageElement))
 }
 
-export async function getPageBySlug(slug: string): Promise<Page> {
+export async function getPageBySlug(slug: string): Promise<Page | undefined> {
   const res = await fetch(`${API_URL}/pages?slug=${slug}`)
   const data = await res.json()
-  return await mapPageElement(data[0])
+  return data.length > 0 ? await mapPageElement(data[0]) : undefined
 }
 
 async function mapPageElement(element: any): Promise<Page> {
   return { ...element, content: await markdownToHtml(element.content) }
+}
+
+export async function getAllClassTypes(): Promise<ClassType[]> {
+  const res = await fetch(`${API_URL}/class-types`)
+  const data = await res.json()
+  return await Promise.all(data.map(mapClassTypeElement))
+}
+
+export async function getClassTypeBySlug(slug: string): Promise<ClassType | undefined> {
+  const res = await fetch(`${API_URL}/class-types?slug=${slug}`)
+  const data = await res.json()
+  return data.length > 0 ? await mapClassTypeElement(data[0]) : undefined
+}
+
+async function mapClassTypeElement(element: any): Promise<ClassType> {
+  return {
+    ...element,
+    description: await markdownToHtml(element.description),
+    classes: await Promise.all(element.classes.map(mapClassElement)),
+  }
+}
+
+async function mapClassElement(element: any): Promise<Class> {
+  return { ...element, description: await markdownToHtml(element.description) }
 }
 
 export async function getAllEvents(): Promise<Event[]> {
