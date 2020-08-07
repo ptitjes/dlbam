@@ -3,26 +3,19 @@ import styled from "styled-components"
 
 const DropdownRoot = styled.div`
   position: relative;
-
-  // centered version
-  margin-left: -8px;
 `
 
 const DropdownContainer = styled.div`
   position: absolute;
   top: 15px;
 
-  // centered version
   left: 50%;
-  margin-left: -100px;
-
-  // left aligned version
-  // left: 0;
-  // margin-left: -12px;
+  transform: translateX(-50%);
 
   padding: 5px;
   padding-bottom: 10px;
-  min-width: 200px;
+  width: fit-content;
+  white-space: nowrap;
 
   z-index: 5;
 
