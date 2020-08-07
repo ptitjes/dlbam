@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 import { Banner } from "../../components/Banner"
 import { Container } from "../../components/Container"
+import Markdown from "../../components/Markdown"
 import { API_URL, Event, getAllEvents } from "../../lib/api"
 
 const EventCardStyles = styled.div`
@@ -95,7 +96,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
         </div>
 
         <div className="container">
-          <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
+          <Markdown content={content} />
         </div>
       </a>
     </EventCardStyles>
@@ -132,9 +133,9 @@ const EventsPage: NextPage<EventsPageProps> = ({ events }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<EventsPageProps> = async ({ params }) => {
-  const data = await getAllEvents()
-  return { props: { events: data } }
+export const getStaticProps: GetStaticProps<EventsPageProps> = async () => {
+  const events = await getAllEvents()
+  return { props: { events } }
 }
 
 export default EventsPage

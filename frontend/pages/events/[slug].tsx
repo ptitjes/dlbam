@@ -3,6 +3,7 @@ import React from "react"
 
 import { Banner } from "../../components/Banner"
 import { Container } from "../../components/Container"
+import Markdown from "../../components/Markdown"
 import { Event, getAllEvents, getEventBySlug } from "../../lib/api"
 
 interface EventPageProps {
@@ -16,7 +17,7 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
     <>
       <Banner title={title} imagePath={image.url} imagePosition={imagePosition} />
       <Container>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <Markdown content={content} />
       </Container>
     </>
   )
@@ -24,13 +25,14 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
 
 export const getStaticProps: GetStaticProps<EventPageProps> = async ({ params }) => {
   const slug = (params ? params["slug"] : "") as string
-  const data = await getEventBySlug(slug)
-  return { props: { event: data } }
+  const event = await getEventBySlug(slug)
+  if (event) return { props: { event } }
+  throw new Error("Unknown event")
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await getAllEvents()
-  const paths = data.map((page) => `/events/${page.slug}`)
+  const events = await getAllEvents()
+  const paths = events.map((event) => `/events/${event.slug}`)
   return { paths, fallback: false }
 }
 

@@ -1,33 +1,24 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import { Banner } from "../../components/Banner"
-import { Container } from "../../components/Container"
+import SimplePage from "../../components/SimplePage"
 import { Page, getAllPages, getPageBySlug } from "../../lib/api"
 
 const SECTION_SLUG = "about"
 
-interface SimplePageProps {
+interface AboutPageProps {
   page: Page
 }
 
-const SimplePage: NextPage<SimplePageProps> = ({ page }) => {
-  const { title, image, imagePosition, content } = page
-
-  return (
-    <>
-      <Banner title={title} imagePath={image && image.url} imagePosition={imagePosition} />
-      <Container>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-      </Container>
-    </>
-  )
+const AboutPage: NextPage<AboutPageProps> = ({ page }) => {
+  return <SimplePage page={page} />
 }
 
-export const getStaticProps: GetStaticProps<SimplePageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<AboutPageProps> = async ({ params }) => {
   const slug = (params ? params["slug"] : "") as string
   const page = await getPageBySlug(slug)
-  return { props: { page } }
+  if (page) return { props: { page } }
+  throw new Error("Unknown page")
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -36,4 +27,4 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
-export default SimplePage
+export default AboutPage

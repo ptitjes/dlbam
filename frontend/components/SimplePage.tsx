@@ -1,10 +1,12 @@
 import { NextPage } from "next"
+import React from "react"
+
+import { Page } from "../lib/api"
 import { Banner } from "./Banner"
 import { Container } from "./Container"
-import React from "react"
-import { Page } from "../lib/api"
+import Markdown from "./Markdown"
 
-interface SimplePageProps {
+export interface SimplePageProps {
   page: Page
 }
 
@@ -15,7 +17,7 @@ const SimplePage: NextPage<SimplePageProps> = ({ page }) => {
     <>
       <Banner title={title} imagePath={image && image.url} imagePosition={imagePosition} />
       <Container>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <Markdown content={content} />
       </Container>
     </>
   )

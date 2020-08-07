@@ -1,14 +1,23 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
-import React from "react"
+import React, { createContext, useContext } from "react"
 import styled from "styled-components"
 
 import { Banner } from "../../components/Banner"
 import { Container } from "../../components/Container"
+import Markdown from "../../components/Markdown"
 import SimplePage from "../../components/SimplePage"
 import { breakpoints } from "../../components/theme"
-import { Class, ClassType, Page, getAllClassTypes, getAllPages, getClassTypeBySlug, getPageBySlug } from "../../lib/api"
+import { ClassType, Page, getAllClassTypes, getAllPages, getClassTypeBySlug, getPageBySlug } from "../../lib/api"
 
 const SECTION_SLUG = "classes"
+
+const ClassTypeContext = createContext<ClassType | undefined>(undefined)
+
+function useClassTypeContext() {
+  const context = useContext(ClassTypeContext)
+  if (!context) throw new Error("No ClassTypeContext!")
+  return context
+}
 
 const ClassGridStyles = styled.ul`
   display: grid;
@@ -35,14 +44,16 @@ const ClassGridStyles = styled.ul`
   }
 `
 
-const ClassGrid: React.FC<{ classes: Class[] }> = ({ classes }) => {
+const ClassGrid: React.FC = () => {
+  const { classes } = useClassTypeContext()
+
   return (
     <ClassGridStyles className={classes.length % 2 === 1 ? "odd-count" : ""}>
-      {classes.map((c) => (
-        <li key={c.id}>
+      {classes.map(({ id, title, description }) => (
+        <li key={id}>
           <div>
-            <h2>{c.title}</h2>
-            <div dangerouslySetInnerHTML={{ __html: c.description }} />
+            <h2>{title}</h2>
+            <Markdown content={description} />
           </div>
         </li>
       ))}
@@ -62,8 +73,8 @@ const Form = styled.form`
   }
 `
 
-const ClassRegistrationForm: React.FC<{ classType: ClassType }> = ({ classType }) => {
-  const { slug, classes } = classType
+const ClassRegistrationForm: React.FC = () => {
+  const { slug, classes } = useClassTypeContext()
 
   return (
     <Form>
@@ -107,17 +118,17 @@ const ClassPage: NextPage<ClassPageProps> = ({ page, classType }) => {
 
   if (!classType) throw new Error("No class type")
 
-  const { title, image, imagePosition, description, classes } = classType
+  const { title, image, imagePosition, description } = classType
   return (
     <>
       <Banner title={title} imagePath={image && image.url} imagePosition={imagePosition} />
       <Container>
-        <div dangerouslySetInnerHTML={{ __html: description }} />
-
-        <ClassGrid classes={classes} />
-
-        <h1>Inscription</h1>
-        <ClassRegistrationForm classType={classType} />
+        <ClassTypeContext.Provider value={classType}>
+          <Markdown
+            content={description}
+            components={{ "class-grid": ClassGrid, "class-registration-form": ClassRegistrationForm }}
+          />
+        </ClassTypeContext.Provider>
       </Container>
     </>
   )

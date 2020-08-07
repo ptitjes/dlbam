@@ -4,6 +4,7 @@ import styled from "styled-components"
 
 import { Banner } from "../../components/Banner"
 import { Container } from "../../components/Container"
+import Markdown from "../../components/Markdown"
 import { API_URL, Article, getAllArticles } from "../../lib/api"
 
 const ArticleCardStyles = styled.div`
@@ -95,7 +96,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         </div>
 
         <div className="container">
-          <div className="content" dangerouslySetInnerHTML={{ __html: content }} />
+          <Markdown content={content} />
         </div>
       </a>
     </ArticleCardStyles>
@@ -132,9 +133,9 @@ const NewsPage: NextPage<NewsPageProps> = ({ articles }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<NewsPageProps> = async ({ params }) => {
-  const data = await getAllArticles()
-  return { props: { articles: data } }
+export const getStaticProps: GetStaticProps<NewsPageProps> = async () => {
+  const articles = await getAllArticles()
+  return { props: { articles } }
 }
 
 export default NewsPage

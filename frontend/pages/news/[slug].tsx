@@ -3,6 +3,7 @@ import React from "react"
 
 import { Banner } from "../../components/Banner"
 import { Container } from "../../components/Container"
+import Markdown from "../../components/Markdown"
 import { Article, getAllArticles, getArticleBySlug } from "../../lib/api"
 
 interface ArticlePageProps {
@@ -16,7 +17,7 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
     <>
       <Banner title={title} imagePath={image.url} imagePosition={imagePosition} />
       <Container>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <Markdown content={content} />
       </Container>
     </>
   )
@@ -24,13 +25,14 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
 
 export const getStaticProps: GetStaticProps<ArticlePageProps> = async ({ params }) => {
   const slug = (params ? params["slug"] : "") as string
-  const data = await getArticleBySlug(slug)
-  return { props: { article: data } }
+  const article = await getArticleBySlug(slug)
+  if (article) return { props: { article } }
+  throw new Error("Unknown article")
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await getAllArticles()
-  const paths = data.map((page) => `/news/${page.slug}`)
+  const articles = await getAllArticles()
+  const paths = articles.map((article) => `/news/${article.slug}`)
   return { paths, fallback: false }
 }
 
