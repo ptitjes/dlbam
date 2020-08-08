@@ -62,6 +62,10 @@ const ClassGrid: React.FC = () => {
 }
 
 const Form = styled.form`
+  border: dotted 3px ${(props) => props.theme.colors.o2};
+  border-radius: 8px;
+  padding: 16px;
+
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   column-gap: 16px;
@@ -86,7 +90,11 @@ const ClassRegistrationForm: React.FC = () => {
         <input type="text" name="lastname" />
         <label>Nom</label>
       </div>
-      <div className="mui-textfield mui-textfield--float-label full-row">
+      <div className="mui-textfield mui-textfield--float-label">
+        <input type="text" name="phone" />
+        <label>Numéro de téléphone</label>
+      </div>
+      <div className="mui-textfield mui-textfield--float-label">
         <input type="text" name="email" />
         <label>Courriel</label>
       </div>
@@ -101,8 +109,36 @@ const ClassRegistrationForm: React.FC = () => {
           </div>
         ))}
       </div>
+      <div className="full-row">
+        <h3>Adhésion à Mars Blues Dancers ou au CIAM :</h3>
+        <p>Pour suivre les cours, vous devez être adhérent.e de Mars Blues Dancers ou du CIAM.</p>
+      </div>
+      <div className="mui-radio">
+        <label>
+          <input type="radio" name="membership-dlbam" />
+          J'adhére à l'association (5€)
+        </label>
+      </div>
+      <div className="mui-radio">
+        <label>
+          <input type="radio" name="membership-dlbam-done" />
+          Je suis déjà adhérent de l'association
+        </label>
+      </div>
+      <div className="mui-radio">
+        <label>
+          <input type="radio" name="membership-ciam" />
+          J'adhére au CIAM (20€)
+        </label>
+      </div>
+      <div className="mui-radio">
+        <label>
+          <input type="radio" name="membership-ciam-done" />
+          Je suis déjà adhérent du CIAM
+        </label>
+      </div>
       <button type="submit" className="mui-btn mui-btn--primary full-row">
-        Envoyer
+        C'est parti !
       </button>
     </Form>
   )
