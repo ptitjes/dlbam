@@ -1,3 +1,5 @@
+export const { EXTERNAL_API_URL } = process.env
+
 export interface Media extends MediaFormat {
   id: number
   alternativeText: string
@@ -18,4 +20,8 @@ export interface MediaFormat {
   height: number
   size: number
   url: string
+}
+
+export function mediaUrl(media: MediaFormat) {
+  return `${EXTERNAL_API_URL}${media.url}`
 }

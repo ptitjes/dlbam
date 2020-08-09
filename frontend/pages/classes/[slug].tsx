@@ -157,7 +157,7 @@ const ClassPage: NextPage<ClassPageProps> = ({ page, classType }) => {
   const { title, image, imagePosition, description } = classType
   return (
     <>
-      <Banner title={title} imagePath={image && image.url} imagePosition={imagePosition} />
+      <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <ClassTypeContext.Provider value={classType}>
           <Markdown

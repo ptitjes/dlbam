@@ -15,7 +15,7 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
 
   return (
     <>
-      <Banner title={title} imagePath={image.url} imagePosition={imagePosition} />
+      <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <Markdown content={content} />
       </Container>

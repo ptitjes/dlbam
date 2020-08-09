@@ -5,7 +5,8 @@ import styled from "styled-components"
 import { Banner } from "../../components/Banner"
 import { Container } from "../../components/Container"
 import Markdown from "../../components/Markdown"
-import { API_URL, Event, getAllEvents } from "../../lib/api"
+import { Event, getAllEvents } from "../../lib/api"
+import { mediaUrl } from "../../lib/strapi"
 
 const EventCardStyles = styled.div`
   border-radius: 16px;
@@ -85,7 +86,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
       <a href={`/events/${event.slug}`}>
         <div className="banner">
           <EventCardImage
-            src={`${API_URL}${image.formats["large"].url}`}
+            src={`${mediaUrl(image.formats["large"])}`}
             alt={image.alternativeText}
             position={imagePosition}
           />
