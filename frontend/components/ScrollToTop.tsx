@@ -19,6 +19,10 @@ const ScrollToTopContainer = styled.div`
       transform: scale(1);
       pointer-events: auto;
     }
+
+    svg {
+      transform: translate(0, 2px);
+    }
   }
 `
 
