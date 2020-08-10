@@ -61,7 +61,7 @@ const ArticleCardStyles = styled.div`
   }
 
   .container {
-    padding: 0 16px;
+    padding: 8px 16px;
     text-overflow: ellipsis;
   }
 `

@@ -108,6 +108,13 @@ export const GlobalStyle = createGlobalStyle`
     color: #0070f3
   }
 
+  :target::before {
+    content: "";
+    display: block;
+    height: 96px; /* fixed header height*/
+    margin: -96px 0 0; /* negative fixed header height */
+  }
+
   .hidden {
     display: none !important;
   }

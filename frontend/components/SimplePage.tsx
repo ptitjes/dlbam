@@ -17,7 +17,7 @@ const SimplePage: NextPage<SimplePageProps> = ({ page }) => {
     <>
       <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
-        <Markdown content={content} />
+        <Markdown content={content} toc={true} />
       </Container>
     </>
   )

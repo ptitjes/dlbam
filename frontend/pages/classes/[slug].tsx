@@ -162,6 +162,7 @@ const ClassPage: NextPage<ClassPageProps> = ({ page, classType }) => {
         <ClassTypeContext.Provider value={classType}>
           <Markdown
             content={description}
+            toc={true}
             components={{ "class-grid": ClassGrid, "class-registration-form": ClassRegistrationForm }}
           />
         </ClassTypeContext.Provider>
