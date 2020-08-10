@@ -1,0 +1,16 @@
+{
+  "kind": "singleType",
+  "collectionName": "front_matters",
+  "info": {
+    "name": "Front Matter"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "content": {
+      "type": "richtext"
+    }
+  }
+}

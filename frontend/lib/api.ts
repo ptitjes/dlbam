@@ -4,6 +4,10 @@ import { Media } from "./strapi"
 
 export const { INTERNAL_API_URL } = process.env
 
+export interface FrontMatter {
+  content: string
+}
+
 export interface Section {
   id: number
   title: string
@@ -53,6 +57,11 @@ export interface Class {
   title: string
   description: string
   price: number
+}
+
+export async function getFrontMatter(): Promise<FrontMatter> {
+  const res = await fetch(`${INTERNAL_API_URL}/front-matter`)
+  return await res.json()
 }
 
 export async function getAllSections(): Promise<Section[]> {

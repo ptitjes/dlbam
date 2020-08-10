@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/front-matter",
+      "handler": "front-matter.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/front-matter",
+      "handler": "front-matter.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/front-matter",
+      "handler": "front-matter.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
