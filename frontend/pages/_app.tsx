@@ -5,6 +5,7 @@ import { ThemeProvider } from "styled-components"
 
 import Footer from "../components/Footer"
 import Header from "../components/Header"
+import ScrollToTop from "../components/ScrollToTop"
 import { GlobalStyle, theme } from "../components/theme"
 import { useShrinkingClass } from "../hooks/shrinking"
 import { getAllSections } from "../lib/api"
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Header sections={sections} />
         <Component {...pageProps} />
         <Footer sections={sections} />
+        <ScrollToTop />
       </ThemeProvider>
     </div>
   )
