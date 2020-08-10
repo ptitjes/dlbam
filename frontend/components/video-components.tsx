@@ -1,0 +1,44 @@
+import React from "react"
+import styled from "styled-components"
+
+export const VideoGrid = styled.div`
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 16px;
+  row-gap: 8px;
+`
+
+const YoutubeVideoContainer = styled.div`
+  .aspect-ratio {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+    }
+  }
+  .caption {
+    width: 100%;
+    margin: 10px 0;
+    font-size: 90%;
+    text-align: center;
+  }
+`
+
+export const YoutubeVideo: React.FC<{ id: string }> = ({ id, children }) => {
+  return (
+    <YoutubeVideoContainer>
+      <div className="aspect-ratio">
+        <iframe src={`https://www.youtube.com/embed/${id}`} frameBorder="0" allowFullScreen />
+      </div>
+      <div className="caption">{children}</div>
+    </YoutubeVideoContainer>
+  )
+}

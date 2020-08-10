@@ -4,7 +4,7 @@ module.exports = ({ env }) => ({
   url: env("DOMAIN") ? `https://api.${env("DOMAIN")}` : "",
   admin: {
     auth: {
-      secret: env("ADMIN_JWT_SECRET"),
+      secret: env("ADMIN_JWT_SECRET") || "84005aa199e4967625b076dfa83ee889",
     },
   },
 });

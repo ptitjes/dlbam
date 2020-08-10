@@ -4,6 +4,13 @@ import remarkParse from "remark-parse"
 import remarkReact from "remark-react"
 import unified from "unified"
 
+import { VideoGrid, YoutubeVideo } from "./video-components"
+
+const baseComponents = {
+  "video-grid": VideoGrid,
+  "youtube-video": YoutubeVideo,
+}
+
 const rehypeParser = unified().use(rehypeParse, { fragment: true })
 
 interface MarkdownContentProps {
@@ -21,7 +28,7 @@ const Markdown: React.FC<MarkdownContentProps> = ({ content, components }) => {
           html: (h: any, node: any) => rehypeParser.parse(node.value).children,
         },
       },
-      remarkReactComponents: components,
+      remarkReactComponents: { ...components, ...baseComponents },
       sanitize: false,
     })
 

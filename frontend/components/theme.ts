@@ -107,34 +107,7 @@ export const GlobalStyle = createGlobalStyle`
   a {
     color: #0070f3
   }
-  
-  .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    column-gap: 16px;
-    row-gap: 8px;
-  }
-  
-  .aspect-ratio {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
 
-    iframe {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      left: 0; top: 0;
-    }
-  }
-  .caption {
-    width: 100%;
-    margin: 10px 0;
-    font-size: 90%;
-    text-align: center;
-  }
-  
   .hidden {
     display: none !important;
   }
