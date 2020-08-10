@@ -39,6 +39,9 @@
     "imagePosition": {
       "type": "string",
       "default": "center center"
+    },
+    "shortTitle": {
+      "type": "string"
     }
   }
 }

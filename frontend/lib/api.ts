@@ -19,6 +19,7 @@ export interface Section {
 export interface Page {
   id: number
   title: string
+  shortTitle: string
   slug: string
   image: Media
   imagePosition: string

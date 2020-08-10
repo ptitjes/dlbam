@@ -34,6 +34,9 @@ const FooterStyles = styled.div`
 `
 
 const Footer: React.FC<{ sections: Section[] }> = ({ sections }) => {
+  const misc = sections.find((s) => s.slug === "misc")
+  if (!misc) throw new Error("No misc page")
+
   return (
     <FooterStyles>
       <Container>
@@ -61,15 +64,11 @@ const Footer: React.FC<{ sections: Section[] }> = ({ sections }) => {
           <div>
             <h3>En savoir plus</h3>
             <ul>
-              <li>
-                <a href="">CGV</a>
-              </li>
-              <li>
-                <a href="">RGDP</a>
-              </li>
-              <li>
-                <a href="">Mentions légales</a>
-              </li>
+              {misc.pages.map(({ shortTitle, title, slug }) => (
+                <li key={slug}>
+                  <a href={`/${misc.slug}/${slug}`}>{shortTitle || title}</a>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
