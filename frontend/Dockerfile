@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:10
+FROM mhart/alpine-node:12
 WORKDIR /usr/src
 COPY package.json yarn.lock /usr/src/
 RUN yarn install
