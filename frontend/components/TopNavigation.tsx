@@ -4,7 +4,7 @@ import { FaBars } from "react-icons/fa"
 import styled from "styled-components"
 
 import { Section } from "../lib/api"
-import { DropdownMenu } from "./DropdownMenu"
+import { DropdownMenu, DropdownMenuContextProvider } from "./DropdownMenu"
 import Logo from "./Logo"
 
 const NavigationContainer = styled.nav`
@@ -114,7 +114,7 @@ const NavigationSection: React.FC<{ section: Section }> = ({ section }) => {
     <li className={activated ? "activated" : undefined}>
       {!hasSubMenu && <a href={`/${section.slug}`}>{section.title}</a>}
       {hasSubMenu && (
-        <DropdownMenu title={section.title}>
+        <DropdownMenu id={section.slug} title={section.title}>
           <ul className="dropdown">
             {subMenuElements.map(([title, path]) => (
               <li key={path} className={router.asPath === path ? "activated" : undefined}>
@@ -142,13 +142,15 @@ export const TopNavigation: React.FC<{ sections: Section[] }> = ({ sections }) =
       </div>
 
       <div className="navbar-right">
-        <ul className="visible@s">
-          {sections
-            .filter((section) => section.displayInNavigation)
-            .map((section) => (
-              <NavigationSection key={section.id} section={section} />
-            ))}
-        </ul>
+        <DropdownMenuContextProvider>
+          <ul className="visible@s">
+            {sections
+              .filter((section) => section.displayInNavigation)
+              .map((section) => (
+                <NavigationSection key={section.id} section={section} />
+              ))}
+          </ul>
+        </DropdownMenuContextProvider>
         <a href="#" className="hidden@s">
           <FaBars />
         </a>

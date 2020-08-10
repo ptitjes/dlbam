@@ -1,5 +1,32 @@
-import React, { MouseEventHandler, useRef, useState } from "react"
+import React, {
+  MouseEventHandler,
+  TouchEventHandler,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from "react"
 import styled from "styled-components"
+
+interface DropdownMenuContext {
+  openMenuId: string | undefined
+  setOpenMenuId: (f: (prevId: string | undefined) => string | undefined) => void
+}
+
+const DropdownMenuContext = createContext<DropdownMenuContext | undefined>(undefined)
+
+function useDropdownMenuContext() {
+  const context = useContext(DropdownMenuContext)
+  if (!context) throw new Error("No DropdownMenuContext!")
+  return context
+}
+
+export const DropdownMenuContextProvider: React.FC = ({ children }) => {
+  const [openMenuId, setOpenMenuId] = useState<string | undefined>(undefined)
+
+  return <DropdownMenuContext.Provider value={{ openMenuId, setOpenMenuId }}>{children}</DropdownMenuContext.Provider>
+}
 
 const DropdownRoot = styled.div`
   position: relative;
@@ -50,33 +77,48 @@ const DropdownContainer = styled.div`
 `
 
 interface DropdownMenuProps {
+  id: string
   title: string
 }
 
-export const DropdownMenu: React.FC<DropdownMenuProps> = ({ title, children }) => {
-  const [visible, setVisible] = useState(false)
-  const leaveTimeoutHandle = useRef<number | undefined>()
+export const DropdownMenu: React.FC<DropdownMenuProps> = ({ id, title, children }) => {
+  const { openMenuId, setOpenMenuId } = useDropdownMenuContext()
+
+  const visible = useMemo(() => openMenuId === id, [openMenuId, id])
+  const setVisible = useCallback(
+    (f: (prevState: boolean) => boolean) => {
+      setOpenMenuId((prevId) => (f(prevId === id) ? id : undefined))
+    },
+    [setOpenMenuId],
+  )
 
   const handleClick: MouseEventHandler = (event) => {
     event.preventDefault()
     setVisible((prevState) => !prevState)
   }
 
+  const handleTouch: TouchEventHandler = (event) => {
+    event.preventDefault()
+    setVisible((prevState) => !prevState)
+  }
+
   const handleMouseEnter: MouseEventHandler = () => {
-    if (leaveTimeoutHandle.current) {
-      clearTimeout(leaveTimeoutHandle.current)
-      leaveTimeoutHandle.current = undefined
-    }
-    setVisible(true)
+    setVisible(() => true)
   }
 
   const handleMouseLeave: MouseEventHandler = () => {
-    leaveTimeoutHandle.current = setTimeout(() => setVisible(false), 0)
+    setVisible(() => false)
   }
 
   return (
     <>
-      <a href="#" onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <a
+        href="#"
+        onClick={handleClick}
+        onTouchEnd={handleTouch}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         {title}
       </a>
       <DropdownRoot style={{ visibility: visible ? "visible" : "hidden" }}>
