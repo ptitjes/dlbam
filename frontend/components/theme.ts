@@ -41,8 +41,8 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
       font-family: 'Coiny';
-      src: url('/fonts/coiny-regular-webfont.woff2') format('woff2'),
-           url('/fonts/coiny-regular-webfont.woff') format('woff');
+      src: url('/assets/fonts/coiny-regular-webfont.woff2') format('woff2'),
+           url('/assets/fonts/coiny-regular-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   
@@ -50,32 +50,32 @@ export const GlobalStyle = createGlobalStyle`
   
   @font-face {
       font-family: 'Montserrat';
-      src: url('/fonts/montserrat-regular-webfont.woff2') format('woff2'),
-           url('/fonts/montserrat-regular-webfont.woff') format('woff');
+      src: url('/assets/fonts/montserrat-regular-webfont.woff2') format('woff2'),
+           url('/assets/fonts/montserrat-regular-webfont.woff') format('woff');
       font-weight: normal;
       font-style: normal;
   }
 
   @font-face {
       font-family: 'Montserrat';
-      src: url('/fonts/montserrat-italic-webfont.woff2') format('woff2'),
-           url('/fonts/montserrat-italic-webfont.woff') format('woff');
+      src: url('/assets/fonts/montserrat-italic-webfont.woff2') format('woff2'),
+           url('/assets/fonts/montserrat-italic-webfont.woff') format('woff');
       font-weight: normal;
       font-style: italic;
   }
   
   @font-face {
       font-family: 'Montserrat';
-      src: url('/fonts/montserrat-semibold-webfont.woff2') format('woff2'),
-           url('/fonts/montserrat-semibold-webfont.woff') format('woff');
+      src: url('/assets/fonts/montserrat-semibold-webfont.woff2') format('woff2'),
+           url('/assets/fonts/montserrat-semibold-webfont.woff') format('woff');
       font-weight: bold;
       font-style: normal;
   }
   
   @font-face {
       font-family: 'Montserrat';
-      src: url('/fonts/montserrat-semibolditalic-webfont.woff2') format('woff2'),
-           url('/fonts/montserrat-semibolditalic-webfont.woff') format('woff');
+      src: url('/assets/fonts/montserrat-semibolditalic-webfont.woff2') format('woff2'),
+           url('/assets/fonts/montserrat-semibolditalic-webfont.woff') format('woff');
       font-weight: bold;
       font-style: italic;
   }

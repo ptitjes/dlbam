@@ -19,8 +19,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className={shrinkingClass}>
       <Head>
         <title>Dansons le Blues à Marseille</title>
-        <link href="/mui.min.css" rel="stylesheet" type="text/css" />
-        <script src="/mui.min.js" />
+        <link href="/assets/mui.min.css" rel="stylesheet" type="text/css" />
+        <script src="/assets/mui.min.js" />
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>

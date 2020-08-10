@@ -6,7 +6,7 @@ COPY . .
 
 VOLUME /usr/src
 EXPOSE 3000
-CMD ["yarn", "dev"]
+CMD ["yarn", "build-start"]
 
 #FROM mhart/alpine-node:10 as base
 #WORKDIR /usr/src
