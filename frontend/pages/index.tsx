@@ -7,7 +7,7 @@ import { Container } from "../components/Container"
 const Home: NextPage = () => {
   return (
     <>
-      <Banner imagePath="/uploads/20200702_DSCF_0356_56c770efa7.JPG" imagePosition="center 20%" />
+      <Banner imagePath="/uploads/notre_dame_de_la_garde_e1073e7241.jpg" imagePosition="center 20%" />
       <Container>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tincidunt, augue id interdum facilisis, magna
