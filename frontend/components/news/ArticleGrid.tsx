@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
+import { sortBy } from "../../lib/utils"
 import { useArticles } from "./articles-context"
 import { ArticleCard } from "./index"
 
@@ -15,7 +16,7 @@ const ArticleGridList = styled.ul`
 interface ArticleGridProps {}
 
 const ArticleGrid: React.FC<ArticleGridProps> = ({}) => {
-  const articles = useArticles()
+  const articles = sortBy(useArticles(), (article) => -new Date(article.publicationDate))
   return (
     <ArticleGridList>
       {articles.map((article) => (
