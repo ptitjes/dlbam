@@ -46,7 +46,11 @@ const ScrollToTop: React.FC = () => {
 
   return (
     <ScrollToTopContainer>
-      <button className={`mui-btn mui-btn--fab mui-btn--primary ${visible ? "visible" : ""}`} onClick={scrollToTop}>
+      <button
+        className={`mui-btn mui-btn--fab mui-btn--primary ${visible ? "visible" : ""}`}
+        aria-label="Remonter en haut de la page"
+        onClick={scrollToTop}
+      >
         <FaChevronUp />
       </button>
     </ScrollToTopContainer>

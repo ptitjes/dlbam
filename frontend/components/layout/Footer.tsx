@@ -20,6 +20,11 @@ const FooterStyles = styled.div`
     text-align: center;
   }
 
+  h1 {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
   ul {
     list-style: none;
     padding-left: 10px;
@@ -42,7 +47,7 @@ const Footer: React.FC<{ sections: Section[] }> = ({ sections }) => {
       <Container>
         <div className="grid">
           <div>
-            <h3>Suivez-nous !</h3>
+            <h1>Suivez-nous !</h1>
             <ul>
               <li>
                 <a href="">
@@ -62,7 +67,7 @@ const Footer: React.FC<{ sections: Section[] }> = ({ sections }) => {
             </ul>
           </div>
           <div>
-            <h3>En savoir plus</h3>
+            <h1>En savoir plus</h1>
             <ul>
               {misc.pages.map(({ shortTitle, title, slug }) => (
                 <li key={slug}>
@@ -72,7 +77,7 @@ const Footer: React.FC<{ sections: Section[] }> = ({ sections }) => {
             </ul>
           </div>
           <div>
-            <h3>Contact</h3>
+            <h1>Contact</h1>
             <ul>
               <li>
                 <a href="tel:+33625136745">

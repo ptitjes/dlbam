@@ -28,7 +28,12 @@ const YoutubeVideo: React.FC<{ id: string }> = ({ id, children }) => {
   return (
     <YoutubeVideoContainer>
       <div className="aspect-ratio">
-        <iframe src={`https://www.youtube.com/embed/${id}`} frameBorder="0" allowFullScreen />
+        <iframe
+          src={`https://www.youtube.com/embed/${id}`}
+          title={children?.toString()}
+          frameBorder="0"
+          allowFullScreen
+        />
       </div>
       <div className="caption">{children}</div>
     </YoutubeVideoContainer>
