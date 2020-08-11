@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import SimplePage from "../../components/SimplePage"
+import SimplePageContent from "../../components/SimplePageContent"
 import { Page, getAllPages, getPageBySlug } from "../../lib/api"
 
 const SECTION_SLUG = "misc"
@@ -11,7 +11,7 @@ interface MiscPageProps {
 }
 
 const MiscPage: NextPage<MiscPageProps> = ({ page }) => {
-  return <SimplePage page={page} />
+  return <SimplePageContent pageContent={page} />
 }
 
 export const getStaticProps: GetStaticProps<MiscPageProps> = async ({ params }) => {

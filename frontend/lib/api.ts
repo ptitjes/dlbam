@@ -9,6 +9,14 @@ export interface FrontMatter {
   content: string
 }
 
+export interface PageContent {
+  title: string
+  description: string
+  image: Media
+  imagePosition: string
+  content: string
+}
+
 export interface Section {
   id: number
   title: string
@@ -17,15 +25,10 @@ export interface Section {
   pages: Page[]
 }
 
-export interface Page {
+export interface Page extends PageContent {
   id: number
-  title: string
   shortTitle: string
-  description: string
   slug: string
-  image: Media
-  imagePosition: string
-  content: string
 }
 
 export interface Event {
@@ -46,12 +49,8 @@ export interface Article {
   content: string
 }
 
-export interface ClassType {
-  title: string
+export interface ClassType extends PageContent {
   slug: string
-  image: Media
-  imagePosition: string
-  description: string
   classes: Class[]
 }
 

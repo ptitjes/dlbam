@@ -1,9 +1,9 @@
 import React from "react"
 import styled from "styled-components"
 
-import { useClassTypeContext } from "../../pages/classes/[slug]"
 import Markdown from "../Markdown"
 import { breakpoints } from "../theme"
+import { useClassTypeContext } from "./class-type-context"
 
 const ClassGridStyles = styled.ul`
   display: grid;

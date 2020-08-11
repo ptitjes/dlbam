@@ -12,9 +12,6 @@
     "title": {
       "type": "string"
     },
-    "description": {
-      "type": "richtext"
-    },
     "classes": {
       "collection": "class",
       "via": "classType"
@@ -37,6 +34,12 @@
     "imagePosition": {
       "type": "string",
       "default": "center center"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

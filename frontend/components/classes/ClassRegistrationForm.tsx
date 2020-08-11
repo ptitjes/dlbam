@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 
-import { useClassTypeContext } from "../../pages/classes/[slug]"
 import { breakpoints } from "../theme"
+import { useClassTypeContext } from "./class-type-context"
 
 const Form = styled.form`
   border: dotted 3px ${(props) => props.theme.colors.o2};

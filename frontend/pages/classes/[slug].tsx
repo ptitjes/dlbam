@@ -1,49 +1,36 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
-import React, { createContext, useContext } from "react"
+import React from "react"
 
-import Markdown from "../../components/Markdown"
-import SimplePage from "../../components/SimplePage"
+import SimplePageContent from "../../components/SimplePageContent"
 import { ClassGrid, ClassRegistrationForm } from "../../components/classes"
-import { Banner, Container } from "../../components/layout"
-import { PageSeo } from "../../components/seo"
+import { ClassTypeProvider } from "../../components/classes"
 import { ClassType, Page, getAllClassTypes, getAllPages, getClassTypeBySlug, getPageBySlug } from "../../lib/api"
+import { throwError } from "../../lib/utils"
 
 const SECTION_SLUG = "classes"
 
-const ClassTypeContext = createContext<ClassType | undefined>(undefined)
-
-export function useClassTypeContext() {
-  const context = useContext(ClassTypeContext)
-  if (!context) throw new Error("No ClassTypeContext!")
-  return context
-}
-
-interface ClassPageProps {
+type ClassPageProps = {
   classType?: ClassType
   page?: Page
 }
 
+const classPageComponents = {
+  "class-grid": ClassGrid,
+  "class-registration-form": ClassRegistrationForm,
+}
+
 const ClassPage: NextPage<ClassPageProps> = ({ page, classType }) => {
-  if (page) return <SimplePage page={page} />
+  if (page) return <SimplePageContent pageContent={page} />
 
-  if (!classType) throw new Error("No class type")
+  if (classType) {
+    return (
+      <ClassTypeProvider classType={classType}>
+        <SimplePageContent pageContent={classType} toc={true} components={classPageComponents} />
+      </ClassTypeProvider>
+    )
+  }
 
-  const { title, image, imagePosition, description } = classType
-  return (
-    <>
-      <PageSeo title={title} description={`Les informations sur les cours de danses blues – ${title}`} image={image} />
-      <Banner title={title} image={image} imagePosition={imagePosition} />
-      <Container>
-        <ClassTypeContext.Provider value={classType}>
-          <Markdown
-            content={description}
-            toc={true}
-            components={{ "class-grid": ClassGrid, "class-registration-form": ClassRegistrationForm }}
-          />
-        </ClassTypeContext.Provider>
-      </Container>
-    </>
-  )
+  throwError("No page or class type")
 }
 
 export const getStaticProps: GetStaticProps<ClassPageProps> = async ({ params }) => {
@@ -55,7 +42,7 @@ export const getStaticProps: GetStaticProps<ClassPageProps> = async ({ params })
   const classType = await getClassTypeBySlug(slug)
   if (classType) return { props: { classType } }
 
-  throw new Error("Unknown page")
+  throwError("No page or class type")
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {

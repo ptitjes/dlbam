@@ -9,12 +9,16 @@ import unified from "unified"
 import { remarkMiniToc } from "../lib/remark-mini-toc"
 import { markdownComponents } from "./markdown-components"
 
+export interface ProvidedComponents {
+  [name: string]: React.FC<any>
+}
+
 const rehypeParser = unified().use(rehypeParse, { fragment: true })
 
 interface MarkdownContentProps {
   content: string
   toc?: boolean
-  components?: { [name: string]: any }
+  components?: ProvidedComponents
 }
 
 const Markdown: React.FC<MarkdownContentProps> = ({ content, toc = false, components }) => {
