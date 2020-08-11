@@ -21,8 +21,8 @@ const EventsPage: NextPage<EventsPageProps> = ({ events, eventsPage }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<EventsPageProps> = async () => {
-  const events = await getAllEvents()
+export const getStaticProps: GetStaticProps<EventsPageProps> = async ({ preview }) => {
+  const events = await getAllEvents(preview)
   const eventsPage = (await getPageBySlug("events")) ?? throwError("No events page!")
   return { props: { events, eventsPage }, revalidate: 1 }
 }

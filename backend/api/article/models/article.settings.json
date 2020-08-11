@@ -36,6 +36,16 @@
     },
     "publicationDate": {
       "type": "date"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "preview",
+        "published",
+        "archived"
+      ],
+      "default": "preview",
+      "required": true
     }
   }
 }

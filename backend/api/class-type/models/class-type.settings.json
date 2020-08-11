@@ -13,8 +13,8 @@
       "type": "string"
     },
     "classes": {
-      "collection": "class",
-      "via": "classType"
+      "via": "classType",
+      "collection": "class"
     },
     "slug": {
       "type": "uid",
@@ -40,6 +40,16 @@
     },
     "description": {
       "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "preview",
+        "published",
+        "archived"
+      ],
+      "default": "preview",
+      "required": true
     }
   }
 }

@@ -4,12 +4,22 @@ import { Media } from "./strapi"
 
 export const { INTERNAL_API_URL } = process.env
 
+enum Status {
+  Preview = "preview",
+  Published = "published",
+  Archived = "archived",
+}
+
+export interface Content {
+  status: Status
+}
+
 export interface FrontMatter {
   description: string
   content: string
 }
 
-export interface PageContent {
+export interface PageContent extends Content {
   title: string
   surtitle?: string
   description: string
@@ -30,9 +40,10 @@ export interface Page extends PageContent {
   id: number
   shortTitle: string
   slug: string
+  section?: Section
 }
 
-export interface Event {
+export interface Event extends Content {
   title: string
   slug: string
   date: string
@@ -41,7 +52,7 @@ export interface Event {
   content: string
 }
 
-export interface Article {
+export interface Article extends Content {
   title: string
   slug: string
   publicationDate: string
@@ -63,56 +74,75 @@ export interface Class {
 }
 
 export async function getFrontMatter(): Promise<FrontMatter> {
-  const res = await fetch(`${INTERNAL_API_URL}/front-matter`)
-  return await res.json()
+  return getSingle<FrontMatter>("front-matter")
 }
 
 export async function getAllSections(): Promise<Section[]> {
-  const res = await fetch(`${INTERNAL_API_URL}/sections`)
+  return await findAll<Section>("sections")
+}
+
+export async function getAllPages(sectionSlug: string, preview = false): Promise<Page[]> {
+  return await findAll<Page>("pages", { section: { slug: sectionSlug }, ...status(preview) })
+}
+
+export async function getPageBySlug(slug: string, preview = false): Promise<Page | undefined> {
+  return findOne<Page>("pages", { slug, ...status(preview) })
+}
+
+export async function getAllClassTypes(preview = false): Promise<ClassType[]> {
+  return await findAll<ClassType>("class-types", status(preview))
+}
+
+export async function getClassTypeBySlug(slug: string, preview = false): Promise<ClassType | undefined> {
+  return findOne<ClassType>("class-types", { slug, ...status(preview) })
+}
+
+export async function getAllEvents(preview = false): Promise<Event[]> {
+  return await findAll<Event>("events", status(preview))
+}
+
+export async function getEventBySlug(slug: string, preview = false): Promise<Event | undefined> {
+  return findOne<Event>("events", { slug, ...status(preview) })
+}
+
+export async function getAllArticles(preview = false): Promise<Article[]> {
+  return await findAll<Article>("articles", status(preview))
+}
+
+export async function getArticleBySlug(slug: string, preview = false): Promise<Article | undefined> {
+  return findOne<Article>("articles", { slug, ...status(preview) })
+}
+
+async function findAll<T>(collection: string, query?: DeepPartial<T>): Promise<T[]> {
+  const queryString = query ? `?${createQuery(query)}` : ""
+  const res = await fetch(`${INTERNAL_API_URL}/${collection}${queryString}`)
   return await res.json()
 }
 
-export async function getAllPages(sectionSlug?: string): Promise<Page[]> {
-  const sectionSlugQuery = sectionSlug ? `?section.slug=${sectionSlug}` : ""
-  const res = await fetch(`${INTERNAL_API_URL}/pages${sectionSlugQuery}`)
-  return await res.json()
-}
-
-export async function getPageBySlug(slug: string): Promise<Page | undefined> {
-  const res = await fetch(`${INTERNAL_API_URL}/pages?slug=${slug}`)
-  const data = await res.json()
+async function findOne<T>(collection: string, query?: DeepPartial<T>): Promise<T | undefined> {
+  const data = await findAll<T>(collection, query)
   return data.length > 0 ? data[0] : undefined
 }
 
-export async function getAllClassTypes(): Promise<ClassType[]> {
-  const res = await fetch(`${INTERNAL_API_URL}/class-types`)
+async function getSingle<T>(single: string): Promise<T> {
+  const res = await fetch(`${INTERNAL_API_URL}/${single}`)
   return await res.json()
 }
 
-export async function getClassTypeBySlug(slug: string): Promise<ClassType | undefined> {
-  const res = await fetch(`${INTERNAL_API_URL}/class-types?slug=${slug}`)
-  const data = await res.json()
-  return data.length > 0 ? data[0] : undefined
+function status(preview: boolean) {
+  return !preview ? { status: Status.Published } : {}
 }
 
-export async function getAllEvents(): Promise<Event[]> {
-  const res = await fetch(`${INTERNAL_API_URL}/events`)
-  return await res.json()
+type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>
 }
 
-export async function getEventBySlug(slug: string): Promise<Event | undefined> {
-  const res = await fetch(`${INTERNAL_API_URL}/events?slug=${slug}`)
-  const data = await res.json()
-  return data.length > 0 ? data[0] : undefined
-}
-
-export async function getAllArticles(): Promise<Article[]> {
-  const res = await fetch(`${INTERNAL_API_URL}/articles`)
-  return await res.json()
-}
-
-export async function getArticleBySlug(slug: string): Promise<Article | undefined> {
-  const res = await fetch(`${INTERNAL_API_URL}/articles?slug=${slug}`)
-  const data = await res.json()
-  return data.length > 0 ? data[0] : undefined
+function createQuery(query: DeepPartial<any> | any, currentPath: string[] = []): string {
+  if (typeof query === "object") {
+    return Object.entries(query)
+      .map(([key, value]) => createQuery(value, [...currentPath, key]))
+      .join("&")
+  } else {
+    return `${currentPath.join(".")}=${query}`
+  }
 }

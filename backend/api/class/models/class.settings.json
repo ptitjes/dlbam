@@ -16,8 +16,8 @@
       "type": "richtext"
     },
     "classType": {
-      "via": "classes",
-      "model": "class-type"
+      "model": "class-type",
+      "via": "classes"
     },
     "price": {
       "type": "integer"

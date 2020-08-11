@@ -21,8 +21,8 @@ const NewsPage: NextPage<NewsPageProps> = ({ articles, newsPage }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<NewsPageProps> = async () => {
-  const articles = await getAllArticles()
+export const getStaticProps: GetStaticProps<NewsPageProps> = async ({ preview }) => {
+  const articles = await getAllArticles(preview)
   const newsPage = (await getPageBySlug("news")) ?? throwError("No news page!")
   return { props: { articles, newsPage }, revalidate: 1 }
 }

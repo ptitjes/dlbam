@@ -22,9 +22,9 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps<EventPageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<EventPageProps> = async ({ params, preview }) => {
   const slug = (params ? params["slug"] : "") as string
-  const event = await getEventBySlug(slug)
+  const event = await getEventBySlug(slug, preview)
   if (event) return { props: { event }, revalidate: 1 }
   throw new Error("Unknown event")
 }

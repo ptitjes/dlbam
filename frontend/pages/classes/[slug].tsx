@@ -32,13 +32,13 @@ const ClassPage: NextPage<ClassPageProps> = ({ page, classType }) => {
   throwError("No page or class type")
 }
 
-export const getStaticProps: GetStaticProps<ClassPageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<ClassPageProps> = async ({ params, preview }) => {
   const slug = (params ? params["slug"] : "") as string
 
-  const page = await getPageBySlug(slug)
+  const page = await getPageBySlug(slug, preview)
   if (page) return { props: { page }, revalidate: 1 }
 
-  const classType = await getClassTypeBySlug(slug)
+  const classType = await getClassTypeBySlug(slug, preview)
   if (classType) return { props: { classType }, revalidate: 1 }
 
   throwError("No page or class type")

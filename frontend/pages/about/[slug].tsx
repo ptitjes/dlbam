@@ -14,9 +14,9 @@ const AboutPage: NextPage<AboutPageProps> = ({ page }) => {
   return <SimplePageContent pageContent={page} />
 }
 
-export const getStaticProps: GetStaticProps<AboutPageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<AboutPageProps> = async ({ params, preview }) => {
   const slug = (params ? params["slug"] : "") as string
-  const page = await getPageBySlug(slug)
+  const page = await getPageBySlug(slug, preview)
   if (page) return { props: { page }, revalidate: 1 }
   throw new Error("Unknown page")
 }

@@ -14,9 +14,9 @@ const MiscPage: NextPage<MiscPageProps> = ({ page }) => {
   return <SimplePageContent pageContent={page} />
 }
 
-export const getStaticProps: GetStaticProps<MiscPageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<MiscPageProps> = async ({ params, preview }) => {
   const slug = (params ? params["slug"] : "") as string
-  const page = await getPageBySlug(slug)
+  const page = await getPageBySlug(slug, preview)
   if (page) return { props: { page }, revalidate: 1 }
   throw new Error("Unknown page")
 }

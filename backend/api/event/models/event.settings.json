@@ -40,6 +40,16 @@
       "type": "uid",
       "targetField": "title",
       "required": true
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "preview",
+        "published",
+        "archived"
+      ],
+      "default": "preview",
+      "required": true
     }
   }
 }

@@ -14,9 +14,9 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
   return <SimplePageContent pageContent={{ ...article, description: `Actualité du ${publicationDate} – ${title}` }} />
 }
 
-export const getStaticProps: GetStaticProps<ArticlePageProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<ArticlePageProps> = async ({ params, preview }) => {
   const slug = (params ? params["slug"] : "") as string
-  const article = await getArticleBySlug(slug)
+  const article = await getArticleBySlug(slug, preview)
   if (article) return { props: { article }, revalidate: 1 }
   throw new Error("Unknown article")
 }
