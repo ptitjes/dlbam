@@ -4,23 +4,30 @@ import styled from "styled-components"
 import { EXTERNAL_API_URL } from "../../lib/strapi"
 import { MediaFormat, mediaUrl } from "../../lib/strapi"
 
+const bannerHeight = 300
+
 const BannerContainer = styled.div`
-  height: 300px;
+  height: ${bannerHeight}px;
   margin-bottom: 20px;
 `
 
 const TitleContainer = styled.div`
-  height: 200px;
+  height: ${bannerHeight}px;
   margin-top: ${(props) => props.theme.sizes.headerLargeSize}px;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
 `
 
 const Title = styled.h1`
   font-family: Coiny;
   font-size: 60px;
+  line-height: 0.9;
   font-weight: normal;
   text-align: center;
   color: ghostwhite;
