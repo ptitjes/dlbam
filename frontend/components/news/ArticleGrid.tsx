@@ -8,12 +8,16 @@ import { ArticleCard } from "./index"
 
 const ArticleGridList = styled(TwoColumnsGrid)`
   grid-auto-rows: 400px;
+  margin: 24px 0;
 `
 
-interface ArticleGridProps {}
+interface ArticleGridProps {
+  limit?: number
+}
 
-const ArticleGrid: React.FC<ArticleGridProps> = ({}) => {
-  const articles = sortBy(useArticles(), (article) => -new Date(article.publicationDate))
+const ArticleGrid: React.FC<ArticleGridProps> = ({ limit }) => {
+  const articles = sortBy(useArticles(), (article) => -new Date(article.publicationDate)).slice(0, limit)
+
   return (
     <ArticleGridList className={articles.length % 2 === 1 ? "span-first" : ""}>
       {articles.map((article) => (

@@ -11,7 +11,7 @@ interface NewsPageProps {
   newsPage: Page
 }
 
-const newsPageComponents = { "article-grid": ArticleGrid }
+export const newsPageComponents = { "article-grid": ArticleGrid }
 
 const NewsPage: NextPage<NewsPageProps> = ({ articles, newsPage }) => {
   return (

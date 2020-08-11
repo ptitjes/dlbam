@@ -11,7 +11,7 @@ interface EventsPageProps {
   eventsPage: Page
 }
 
-const eventsPageComponents = { "event-grid": EventGrid }
+export const eventsPageComponents = { "event-grid": EventGrid }
 
 const EventsPage: NextPage<EventsPageProps> = ({ events, eventsPage }) => {
   return (
