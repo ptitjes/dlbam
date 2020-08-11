@@ -1,4 +1,5 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
+import Head from "next/head"
 import React, { createContext, useContext } from "react"
 
 import Markdown from "../../components/Markdown"
@@ -6,6 +7,7 @@ import SimplePage from "../../components/SimplePage"
 import { ClassGrid, ClassRegistrationForm } from "../../components/classes"
 import { Banner, Container } from "../../components/layout"
 import { ClassType, Page, getAllClassTypes, getAllPages, getClassTypeBySlug, getPageBySlug } from "../../lib/api"
+import { makeTitle } from "../../lib/seo"
 
 const SECTION_SLUG = "classes"
 
@@ -30,6 +32,10 @@ const ClassPage: NextPage<ClassPageProps> = ({ page, classType }) => {
   const { title, image, imagePosition, description } = classType
   return (
     <>
+      <Head>
+        <title>{makeTitle(title)}</title>
+        <meta name="description" content={`Les informations sur les cours de danses blues – ${title}`} />
+      </Head>
       <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <ClassTypeContext.Provider value={classType}>

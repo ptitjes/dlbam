@@ -42,6 +42,9 @@
     },
     "shortTitle": {
       "type": "string"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

@@ -1,10 +1,12 @@
 import { GetStaticProps, NextPage } from "next"
+import Head from "next/head"
 import React from "react"
 import styled from "styled-components"
 
 import Markdown from "../../components/Markdown"
 import { Banner, Container } from "../../components/layout"
 import { Article, getAllArticles } from "../../lib/api"
+import { makeTitle } from "../../lib/seo"
 import { mediaUrl } from "../../lib/strapi"
 
 const ArticleCardStyles = styled.div`
@@ -114,6 +116,10 @@ interface NewsPageProps {
 const NewsPage: NextPage<NewsPageProps> = ({ articles }) => {
   return (
     <>
+      <Head>
+        <title>{makeTitle("Les actualités")}</title>
+        <meta name="description" content="Les actualités de Dansons le Blues à Marseille" />
+      </Head>
       <Banner imagePath="/uploads/events_major_blues_4579ee317d.jpg" imagePosition="center 33%" title="Actualités" />
       <Container>
         <h1>Dernières actualités</h1>

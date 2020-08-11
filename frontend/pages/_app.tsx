@@ -7,16 +7,20 @@ import { Footer, Header, ScrollToTop } from "../components/layout"
 import { GlobalStyle, theme } from "../components/theme"
 import { useShrinkingClass } from "../hooks/shrinking"
 import { getAllSections } from "../lib/api"
+import { makeTitle } from "../lib/seo"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const shrinkingClass = useShrinkingClass()
 
   const { sections } = pageProps
 
+  // noinspection HtmlUnknownAttribute
   return (
     <div className={shrinkingClass}>
       <Head>
-        <title>Dansons le Blues à Marseille</title>
+        <title>{makeTitle()}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="/assets/mui.min.css" rel="stylesheet" type="text/css" />
         <script src="/assets/mui.min.js" />
       </Head>

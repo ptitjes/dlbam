@@ -1,10 +1,12 @@
 import { GetStaticProps, NextPage } from "next"
+import Head from "next/head"
 import React from "react"
 import styled from "styled-components"
 
 import Markdown from "../../components/Markdown"
 import { Banner, Container } from "../../components/layout"
 import { Event, getAllEvents } from "../../lib/api"
+import { makeTitle } from "../../lib/seo"
 import { mediaUrl } from "../../lib/strapi"
 
 const EventCardStyles = styled.div`
@@ -114,6 +116,10 @@ interface EventsPageProps {
 const EventsPage: NextPage<EventsPageProps> = ({ events }) => {
   return (
     <>
+      <Head>
+        <title>{makeTitle("Les événements")}</title>
+        <meta name="description" content="Les événements de Dansons le Blues à Marseille" />
+      </Head>
       <Banner imagePath="/uploads/events_major_blues_4579ee317d.jpg" imagePosition="center 33%" title="Événements" />
       <Container>
         <h1>Prochains événements</h1>

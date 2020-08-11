@@ -5,6 +5,7 @@ import { Media } from "./strapi"
 export const { INTERNAL_API_URL } = process.env
 
 export interface FrontMatter {
+  description: string
   content: string
 }
 
@@ -20,6 +21,7 @@ export interface Page {
   id: number
   title: string
   shortTitle: string
+  description: string
   slug: string
   image: Media
   imagePosition: string
