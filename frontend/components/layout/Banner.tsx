@@ -1,8 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { EXTERNAL_API_URL } from "../../lib/strapi"
-import { MediaFormat, mediaUrl } from "../../lib/strapi"
+import { EXTERNAL_API_URL, Media, MediaFormatName, mediaUrl } from "../../lib/strapi"
 
 const bannerHeight = 300
 
@@ -57,16 +56,19 @@ const BannerImagePlaceholder = styled.div`
 
 interface BannerProps {
   title?: string
-  image?: MediaFormat
-  imagePath?: string
+
+  image?: Media
+  imageFormat?: MediaFormatName
   imagePosition?: string
+
+  imagePath?: string
 }
 
-export const Banner: React.FC<BannerProps> = ({ title, image, imagePath, imagePosition }) => {
+export const Banner: React.FC<BannerProps> = ({ title, image, imageFormat, imagePosition, imagePath }) => {
   return (
     <BannerContainer>
       {image ? (
-        <BannerImage src={mediaUrl(image)} position={imagePosition} />
+        <BannerImage src={mediaUrl(image, imageFormat)} alt={image.alternativeText} position={imagePosition} />
       ) : imagePath ? (
         <BannerImage src={`${EXTERNAL_API_URL}${imagePath}`} position={imagePosition} />
       ) : (

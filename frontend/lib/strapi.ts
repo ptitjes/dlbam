@@ -22,6 +22,7 @@ export interface MediaFormat {
   url: string
 }
 
-export function mediaUrl(media: MediaFormat) {
-  return `${EXTERNAL_API_URL}${media.url}`
+export function mediaUrl(media: Media, formatName?: MediaFormatName) {
+  const mediaFormat = formatName ? media.formats[formatName] : media
+  return `${EXTERNAL_API_URL}${mediaFormat.url}`
 }

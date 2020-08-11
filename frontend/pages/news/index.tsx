@@ -84,11 +84,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
     <ArticleCardStyles>
       <a href={`/events/${article.slug}`}>
         <div className="banner">
-          <ArticleCardImage
-            src={`${mediaUrl(image.formats["large"])}`}
-            alt={image.alternativeText}
-            position={imagePosition}
-          />
+          <ArticleCardImage src={`${mediaUrl(image, "large")}`} alt={image.alternativeText} position={imagePosition} />
           <div className="title">
             <h5>{new Date(publicationDate).toLocaleDateString("fr")}</h5>
             <h3>{title}</h3>

@@ -84,11 +84,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
     <EventCardStyles>
       <a href={`/events/${event.slug}`}>
         <div className="banner">
-          <EventCardImage
-            src={`${mediaUrl(image.formats["large"])}`}
-            alt={image.alternativeText}
-            position={imagePosition}
-          />
+          <EventCardImage src={`${mediaUrl(image, "large")}`} alt={image.alternativeText} position={imagePosition} />
           <div className="title">
             <h5>{new Date(date).toLocaleDateString("fr")}</h5>
             <h3>{title}</h3>
