@@ -2,14 +2,11 @@ import React from "react"
 import styled from "styled-components"
 
 import { sortBy } from "../../lib/utils"
+import { TwoColumnsGrid } from "../layout"
 import { EventCard, useEvents } from "./index"
 
-const EventGridStyles = styled.ul`
-  display: grid;
+const EventGridStyles = styled(TwoColumnsGrid)`
   grid-auto-rows: 400px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  column-gap: 16px;
-  row-gap: 16px;
 `
 
 interface EventGridProps {
@@ -27,7 +24,7 @@ export const EventGrid: React.FC<EventGridProps> = ({ filter = "future", reverse
     (event) => +new Date(event.date) * (reversed ? -1 : 1),
   )
   return (
-    <EventGridStyles>
+    <EventGridStyles className={events.length % 2 === 1 ? "span-first" : ""}>
       {events.map((event) => (
         <li key={event.slug}>
           <EventCard event={event} />
