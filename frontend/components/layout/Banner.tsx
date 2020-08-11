@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 
-import { EXTERNAL_API_URL } from "../lib/strapi"
-import { MediaFormat, mediaUrl } from "../lib/strapi"
+import { EXTERNAL_API_URL } from "../../lib/strapi"
+import { MediaFormat, mediaUrl } from "../../lib/strapi"
 
 const BannerContainer = styled.div`
   height: 300px;
@@ -69,3 +69,5 @@ export const Banner: React.FC<BannerProps> = ({ title, image, imagePath, imagePo
     </BannerContainer>
   )
 }
+
+export default Banner

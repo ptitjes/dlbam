@@ -2,8 +2,8 @@ import React from "react"
 import { FaEnvelope, FaFacebookSquare, FaNewspaper, FaPhoneAlt, FaYoutubeSquare } from "react-icons/fa"
 import styled from "styled-components"
 
-import { Section } from "../lib/api"
-import { Container } from "./Container"
+import { Section } from "../../lib/api"
+import { Container } from "."
 
 const FooterStyles = styled.div`
   margin-top: 80px;

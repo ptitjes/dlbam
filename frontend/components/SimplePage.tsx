@@ -2,9 +2,8 @@ import { NextPage } from "next"
 import React from "react"
 
 import { Page } from "../lib/api"
-import { Banner } from "./Banner"
-import { Container } from "./Container"
 import Markdown from "./Markdown"
+import { Banner, Container } from "./layout"
 
 export interface SimplePageProps {
   page: Page

@@ -1,9 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import { Banner } from "../../components/Banner"
-import { Container } from "../../components/Container"
 import Markdown from "../../components/Markdown"
+import { Banner, Container } from "../../components/layout"
 import { Event, getAllEvents, getEventBySlug } from "../../lib/api"
 
 interface EventPageProps {

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flow-root;
   box-sizing: content-box;
 
@@ -22,3 +22,4 @@ export const Container = styled.div`
     padding-right: 30px;
   }
 `
+export default Container

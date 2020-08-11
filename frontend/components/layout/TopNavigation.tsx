@@ -3,7 +3,7 @@ import React from "react"
 import { FaBars } from "react-icons/fa"
 import styled from "styled-components"
 
-import { Section } from "../lib/api"
+import { Section } from "../../lib/api"
 import { DropdownMenu, DropdownMenuContextProvider } from "./DropdownMenu"
 import Logo from "./Logo"
 
@@ -128,7 +128,7 @@ const NavigationSection: React.FC<{ section: Section }> = ({ section }) => {
   )
 }
 
-export const TopNavigation: React.FC<{ sections: Section[] }> = ({ sections }) => {
+const TopNavigation: React.FC<{ sections: Section[] }> = ({ sections }) => {
   return (
     <NavigationContainer>
       <div className="navbar-left">
@@ -158,3 +158,5 @@ export const TopNavigation: React.FC<{ sections: Section[] }> = ({ sections }) =
     </NavigationContainer>
   )
 }
+
+export default TopNavigation

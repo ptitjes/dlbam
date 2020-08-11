@@ -1,14 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 
-export const VideoGrid = styled.div`
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  column-gap: 16px;
-  row-gap: 8px;
-`
-
 const YoutubeVideoContainer = styled.div`
   .aspect-ratio {
     position: relative;
@@ -32,7 +24,7 @@ const YoutubeVideoContainer = styled.div`
   }
 `
 
-export const YoutubeVideo: React.FC<{ id: string }> = ({ id, children }) => {
+const YoutubeVideo: React.FC<{ id: string }> = ({ id, children }) => {
   return (
     <YoutubeVideoContainer>
       <div className="aspect-ratio">
@@ -42,3 +34,5 @@ export const YoutubeVideo: React.FC<{ id: string }> = ({ id, children }) => {
     </YoutubeVideoContainer>
   )
 }
+
+export default YoutubeVideo

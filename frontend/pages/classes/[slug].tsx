@@ -1,11 +1,10 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import React, { createContext, useContext } from "react"
 
-import { Banner } from "../../components/Banner"
-import { Container } from "../../components/Container"
 import Markdown from "../../components/Markdown"
 import SimplePage from "../../components/SimplePage"
 import { ClassGrid, ClassRegistrationForm } from "../../components/classes"
+import { Banner, Container } from "../../components/layout"
 import { ClassType, Page, getAllClassTypes, getAllPages, getClassTypeBySlug, getPageBySlug } from "../../lib/api"
 
 const SECTION_SLUG = "classes"

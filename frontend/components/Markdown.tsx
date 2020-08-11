@@ -7,12 +7,7 @@ import remarkSlug from "remark-slug"
 import unified from "unified"
 
 import { remarkMiniToc } from "../lib/remark-mini-toc"
-import { VideoGrid, YoutubeVideo } from "./video-components"
-
-const baseComponents = {
-  "video-grid": VideoGrid,
-  "youtube-video": YoutubeVideo,
-}
+import { markdownComponents } from "./markdown-components"
 
 const rehypeParser = unified().use(rehypeParse, { fragment: true })
 
@@ -35,7 +30,7 @@ const Markdown: React.FC<MarkdownContentProps> = ({ content, toc = false, compon
           html: (h: any, node: any) => rehypeParser.parse(node.value).children,
         },
       },
-      remarkReactComponents: { ...components, ...baseComponents },
+      remarkReactComponents: { ...components, ...markdownComponents },
       sanitize: false,
     })
 
