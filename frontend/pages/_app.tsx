@@ -19,10 +19,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <div className={shrinkingClass}>
       <Head>
         <title>{makeTitle()}</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="/assets/mui.min.css" rel="stylesheet" type="text/css" />
-        <script src="/assets/mui.min.js" />
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
