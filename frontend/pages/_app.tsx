@@ -1,13 +1,12 @@
 import App, { AppContext, AppInitialProps, AppProps } from "next/app"
-import Head from "next/head"
 import React from "react"
 import { ThemeProvider } from "styled-components"
 
 import { Footer, Header, ScrollToTop } from "../components/layout"
+import { GlobalSeo } from "../components/seo"
 import { GlobalStyle, theme } from "../components/theme"
 import { useShrinkingClass } from "../hooks/shrinking"
 import { getAllSections } from "../lib/api"
-import { makeTitle } from "../lib/seo"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const shrinkingClass = useShrinkingClass()
@@ -17,9 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   // noinspection HtmlUnknownAttribute
   return (
     <div className={shrinkingClass}>
-      <Head>
-        <title>{makeTitle()}</title>
-      </Head>
+      <GlobalSeo />
       <GlobalStyle />
       <ThemeProvider theme={theme}>
         <Header sections={sections} />

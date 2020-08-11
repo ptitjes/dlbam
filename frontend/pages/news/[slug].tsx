@@ -1,11 +1,10 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
-import Head from "next/head"
 import React from "react"
 
 import Markdown from "../../components/Markdown"
 import { Banner, Container } from "../../components/layout"
+import { PageSeo } from "../../components/seo"
 import { Article, getAllArticles, getArticleBySlug } from "../../lib/api"
-import { makeTitle } from "../../lib/seo"
 
 interface ArticlePageProps {
   article: Article
@@ -16,10 +15,7 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
 
   return (
     <>
-      <Head>
-        <title>{makeTitle(title)}</title>
-        <meta name="description" content={`Actualité du ${publicationDate} – ${title}`} />
-      </Head>
+      <PageSeo title={title} description={`Actualité du ${publicationDate} – ${title}`} />
       <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <Markdown content={content} />

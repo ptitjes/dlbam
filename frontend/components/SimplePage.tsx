@@ -1,11 +1,10 @@
 import { NextPage } from "next"
-import Head from "next/head"
 import React from "react"
 
 import { Page } from "../lib/api"
-import { makeTitle } from "../lib/seo"
 import Markdown from "./Markdown"
 import { Banner, Container } from "./layout"
+import { PageSeo } from "./seo"
 
 export interface SimplePageProps {
   page: Page
@@ -16,10 +15,7 @@ const SimplePage: NextPage<SimplePageProps> = ({ page }) => {
 
   return (
     <>
-      <Head>
-        <title>{makeTitle(title)}</title>
-        <meta name="description" content={description} />
-      </Head>
+      <PageSeo title={title} description={description} />
       <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <Markdown content={content} toc={true} />
