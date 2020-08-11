@@ -1,5 +1,6 @@
 import React from "react"
 import rehypeParse from "rehype-parse"
+import remarkExternalLinks from "remark-external-links"
 import remarkParse from "remark-parse"
 import remarkReact from "remark-react"
 import remarkSlug from "remark-slug"
@@ -26,6 +27,7 @@ const Markdown: React.FC<MarkdownContentProps> = ({ content, toc = false, compon
     .use(remarkParse)
     .use(remarkSlug)
     .use(remarkMiniToc, { toc })
+    .use(remarkExternalLinks)
     .use(remarkReact, {
       createElement: React.createElement,
       toHast: {

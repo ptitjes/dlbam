@@ -3,3 +3,4 @@
 
 declare module "remark-react"
 declare module "remark-slug"
+declare module "remark-external-links"
