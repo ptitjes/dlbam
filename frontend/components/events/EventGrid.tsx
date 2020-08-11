@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
+import { sortBy } from "../../lib/utils"
 import { EventCard, useEvents } from "./index"
 
 const EventGridStyles = styled.ul`
@@ -11,10 +12,20 @@ const EventGridStyles = styled.ul`
   row-gap: 16px;
 `
 
-interface EventGridProps {}
+interface EventGridProps {
+  filter: "future" | "past"
+  reversed: boolean
+}
 
-export const EventGrid: React.FC<EventGridProps> = ({}) => {
-  const events = useEvents()
+export const EventGrid: React.FC<EventGridProps> = ({ filter = "future", reversed = false }) => {
+  const now = new Date()
+  const events = sortBy(
+    useEvents().filter((event) => {
+      const isFutureEvent = new Date(event.date) >= now
+      return filter === "future" ? isFutureEvent : !isFutureEvent
+    }),
+    (event) => +new Date(event.date) * (reversed ? -1 : 1),
+  )
   return (
     <EventGridStyles>
       {events.map((event) => (

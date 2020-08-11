@@ -35,7 +35,7 @@ export interface Page extends PageContent {
 export interface Event {
   title: string
   slug: string
-  date: Date
+  date: string
   image: Media
   imagePosition: string
   content: string
@@ -44,7 +44,7 @@ export interface Event {
 export interface Article {
   title: string
   slug: string
-  publicationDate: Date
+  publicationDate: string
   image: Media
   imagePosition: string
   content: string
