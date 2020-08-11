@@ -17,14 +17,14 @@ const MiscPage: NextPage<MiscPageProps> = ({ page }) => {
 export const getStaticProps: GetStaticProps<MiscPageProps> = async ({ params }) => {
   const slug = (params ? params["slug"] : "") as string
   const page = await getPageBySlug(slug)
-  if (page) return { props: { page } }
+  if (page) return { props: { page }, revalidate: 1 }
   throw new Error("Unknown page")
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pages = await getAllPages(SECTION_SLUG)
   const paths = pages.map((page) => `/${SECTION_SLUG}/${page.slug}`)
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 export default MiscPage

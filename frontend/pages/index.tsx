@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
   const frontMatter = await getFrontMatter()
   const events = await getAllEvents()
   const articles = await getAllArticles()
-  return { props: { frontMatter, events, articles } }
+  return { props: { frontMatter, events, articles }, revalidate: 1 }
 }
 
 export default Home

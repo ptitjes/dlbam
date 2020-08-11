@@ -36,10 +36,10 @@ export const getStaticProps: GetStaticProps<ClassPageProps> = async ({ params })
   const slug = (params ? params["slug"] : "") as string
 
   const page = await getPageBySlug(slug)
-  if (page) return { props: { page } }
+  if (page) return { props: { page }, revalidate: 1 }
 
   const classType = await getClassTypeBySlug(slug)
-  if (classType) return { props: { classType } }
+  if (classType) return { props: { classType }, revalidate: 1 }
 
   throwError("No page or class type")
 }
@@ -51,7 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     ...pages.map((page) => `/${SECTION_SLUG}/${page.slug}`),
     ...classTypes.map((classType) => `/${SECTION_SLUG}/${classType.slug}`),
   ]
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 export default ClassPage

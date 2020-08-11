@@ -17,14 +17,14 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
 export const getStaticProps: GetStaticProps<ArticlePageProps> = async ({ params }) => {
   const slug = (params ? params["slug"] : "") as string
   const article = await getArticleBySlug(slug)
-  if (article) return { props: { article } }
+  if (article) return { props: { article }, revalidate: 1 }
   throw new Error("Unknown article")
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const articles = await getAllArticles()
   const paths = articles.map((article) => `/news/${article.slug}`)
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 export default ArticlePage

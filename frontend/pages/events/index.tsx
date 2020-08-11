@@ -24,7 +24,7 @@ const EventsPage: NextPage<EventsPageProps> = ({ events, eventsPage }) => {
 export const getStaticProps: GetStaticProps<EventsPageProps> = async () => {
   const events = await getAllEvents()
   const eventsPage = (await getPageBySlug("events")) ?? throwError("No events page!")
-  return { props: { events, eventsPage } }
+  return { props: { events, eventsPage }, revalidate: 1 }
 }
 
 export default EventsPage

@@ -25,14 +25,14 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
 export const getStaticProps: GetStaticProps<EventPageProps> = async ({ params }) => {
   const slug = (params ? params["slug"] : "") as string
   const event = await getEventBySlug(slug)
-  if (event) return { props: { event } }
+  if (event) return { props: { event }, revalidate: 1 }
   throw new Error("Unknown event")
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const events = await getAllEvents()
   const paths = events.map((event) => `/events/${event.slug}`)
-  return { paths, fallback: false }
+  return { paths, fallback: true }
 }
 
 export default EventPage
