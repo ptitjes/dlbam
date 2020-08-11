@@ -1,9 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import Markdown from "../../components/Markdown"
-import { Banner, Container } from "../../components/layout"
-import { PageSeo } from "../../components/seo"
+import { SimplePageContent } from "../../components/layout"
 import { Event, getAllEvents, getEventBySlug } from "../../lib/api"
 
 interface EventPageProps {
@@ -11,16 +9,16 @@ interface EventPageProps {
 }
 
 const EventPage: NextPage<EventPageProps> = ({ event }) => {
-  const { title, date, image, imagePosition, content } = event
+  const { title, date } = event
 
   return (
-    <>
-      <PageSeo title={title} description={`Événement du ${date} – ${title}`} image={image} />
-      <Banner title={title} image={image} imagePosition={imagePosition} />
-      <Container>
-        <Markdown content={content} />
-      </Container>
-    </>
+    <SimplePageContent
+      pageContent={{
+        ...event,
+        surtitle: new Date(date).toLocaleDateString("fr"),
+        description: `Événement du ${date} – ${title}`,
+      }}
+    />
   )
 }
 

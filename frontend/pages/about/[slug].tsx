@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import SimplePageContent from "../../components/SimplePageContent"
+import { SimplePageContent } from "../../components/layout"
 import { Page, getAllPages, getPageBySlug } from "../../lib/api"
 
 const SECTION_SLUG = "about"

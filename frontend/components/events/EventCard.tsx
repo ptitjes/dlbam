@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import { Event } from "../../lib/api"
 import { mediaUrl } from "../../lib/strapi"
-import Markdown from "../Markdown"
+import { Markdown } from "../markdown"
 
 const EventCardStyles = styled.div`
   border-radius: 16px;

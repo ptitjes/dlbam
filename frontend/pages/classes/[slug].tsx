@@ -1,9 +1,8 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import SimplePageContent from "../../components/SimplePageContent"
-import { ClassGrid, ClassRegistrationForm } from "../../components/classes"
-import { ClassTypeProvider } from "../../components/classes"
+import { ClassGrid, ClassRegistrationForm, ClassTypeProvider } from "../../components/classes"
+import { SimplePageContent } from "../../components/layout"
 import { ClassType, Page, getAllClassTypes, getAllPages, getClassTypeBySlug, getPageBySlug } from "../../lib/api"
 import { throwError } from "../../lib/utils"
 

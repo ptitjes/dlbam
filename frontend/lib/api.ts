@@ -11,6 +11,7 @@ export interface FrontMatter {
 
 export interface PageContent {
   title: string
+  surtitle?: string
   description: string
   image: Media
   imagePosition: string

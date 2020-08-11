@@ -1,9 +1,7 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import Markdown from "../../components/Markdown"
-import { Banner, Container } from "../../components/layout"
-import { PageSeo } from "../../components/seo"
+import { SimplePageContent } from "../../components/layout"
 import { Article, getAllArticles, getArticleBySlug } from "../../lib/api"
 
 interface ArticlePageProps {
@@ -11,17 +9,9 @@ interface ArticlePageProps {
 }
 
 const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
-  const { title, image, imagePosition, content, publicationDate } = article
+  const { title, publicationDate } = article
 
-  return (
-    <>
-      <PageSeo title={title} description={`Actualité du ${publicationDate} – ${title}`} image={image} />
-      <Banner title={title} image={image} imagePosition={imagePosition} />
-      <Container>
-        <Markdown content={content} />
-      </Container>
-    </>
-  )
+  return <SimplePageContent pageContent={{ ...article, description: `Actualité du ${publicationDate} – ${title}` }} />
 }
 
 export const getStaticProps: GetStaticProps<ArticlePageProps> = async ({ params }) => {

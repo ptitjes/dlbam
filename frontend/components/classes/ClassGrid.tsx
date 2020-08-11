@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import Markdown from "../Markdown"
+import { Markdown } from "../markdown"
 import { breakpoints } from "../theme"
 import { useClassTypeContext } from "./class-type-context"
 

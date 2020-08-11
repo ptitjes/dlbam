@@ -23,6 +23,16 @@ const TitleContainer = styled.div`
   margin-right: auto;
 `
 
+const Surtitle = styled.p`
+  font-family: Coiny;
+  font-size: 30px;
+  line-height: 0.9;
+  font-weight: normal;
+  text-align: center;
+  color: ghostwhite;
+  margin-bottom: -24px;
+`
+
 const Title = styled.h1`
   font-family: Coiny;
   font-size: 60px;
@@ -55,6 +65,7 @@ const BannerImagePlaceholder = styled.div`
 `
 
 interface BannerProps {
+  surtitle?: string
   title?: string
 
   image?: Media
@@ -64,7 +75,7 @@ interface BannerProps {
   imagePath?: string
 }
 
-export const Banner: React.FC<BannerProps> = ({ title, image, imageFormat, imagePosition, imagePath }) => {
+export const Banner: React.FC<BannerProps> = ({ surtitle, title, image, imageFormat, imagePosition, imagePath }) => {
   return (
     <BannerContainer>
       {image ? (
@@ -74,7 +85,10 @@ export const Banner: React.FC<BannerProps> = ({ title, image, imageFormat, image
       ) : (
         <BannerImagePlaceholder />
       )}
-      <TitleContainer>{title && <Title>{title}</Title>}</TitleContainer>
+      <TitleContainer>
+        {surtitle && <Surtitle>{surtitle}</Surtitle>}
+        {title && <Title>{title}</Title>}
+      </TitleContainer>
     </BannerContainer>
   )
 }

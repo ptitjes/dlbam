@@ -1,8 +1,8 @@
 import { GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import Markdown from "../components/Markdown"
 import { Banner, Container } from "../components/layout"
+import { Markdown } from "../components/markdown"
 import { PageSeo } from "../components/seo"
 import { FrontMatter, getFrontMatter } from "../lib/api"
 

@@ -7,10 +7,15 @@ import remarkSlug from "remark-slug"
 import unified from "unified"
 
 import { remarkMiniToc } from "../lib/remark-mini-toc"
-import { markdownComponents } from "./markdown-components"
+import { VideoGrid, YoutubeVideo } from "./video"
 
 export interface ProvidedComponents {
   [name: string]: React.FC<any>
+}
+
+const baseComponents: ProvidedComponents = {
+  "video-grid": VideoGrid,
+  "youtube-video": YoutubeVideo,
 }
 
 const rehypeParser = unified().use(rehypeParse, { fragment: true })
@@ -21,7 +26,7 @@ interface MarkdownContentProps {
   components?: ProvidedComponents
 }
 
-const Markdown: React.FC<MarkdownContentProps> = ({ content, toc = false, components }) => {
+export const Markdown: React.FC<MarkdownContentProps> = ({ content, toc = false, components }) => {
   const transformer = unified()
     .use(remarkParse)
     .use(remarkSlug)
@@ -34,11 +39,9 @@ const Markdown: React.FC<MarkdownContentProps> = ({ content, toc = false, compon
           html: (h: any, node: any) => rehypeParser.parse(node.value).children,
         },
       },
-      remarkReactComponents: { ...components, ...markdownComponents },
+      remarkReactComponents: { ...components, ...baseComponents },
       sanitize: false,
     })
 
   return <>{transformer.processSync(content).contents}</>
 }
-
-export default Markdown

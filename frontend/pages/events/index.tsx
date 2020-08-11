@@ -1,8 +1,8 @@
 import { GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import SimplePageContent from "../../components/SimplePageContent"
 import { EventGrid, EventsProvider } from "../../components/events"
+import { SimplePageContent } from "../../components/layout"
 import { Event, Page, getAllEvents, getPageBySlug } from "../../lib/api"
 import { throwError } from "../../lib/utils"
 
@@ -15,11 +15,9 @@ const eventsPageComponents = { "event-grid": EventGrid }
 
 const EventsPage: NextPage<EventsPageProps> = ({ events, eventsPage }) => {
   return (
-    <>
-      <EventsProvider events={events}>
-        <SimplePageContent pageContent={eventsPage} components={eventsPageComponents} />
-      </EventsProvider>
-    </>
+    <EventsProvider events={events}>
+      <SimplePageContent pageContent={eventsPage} components={eventsPageComponents} />
+    </EventsProvider>
   )
 }
 

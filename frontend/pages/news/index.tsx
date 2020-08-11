@@ -1,7 +1,7 @@
 import { GetStaticProps, NextPage } from "next"
 import React from "react"
 
-import SimplePageContent from "../../components/SimplePageContent"
+import { SimplePageContent } from "../../components/layout"
 import { ArticleGrid, ArticlesProvider } from "../../components/news"
 import { Article, Page, getAllArticles, getPageBySlug } from "../../lib/api"
 import { throwError } from "../../lib/utils"
@@ -15,11 +15,9 @@ const newsPageComponents = { "article-grid": ArticleGrid }
 
 const NewsPage: NextPage<NewsPageProps> = ({ articles, newsPage }) => {
   return (
-    <>
-      <ArticlesProvider articles={articles}>
-        <SimplePageContent pageContent={newsPage} components={newsPageComponents} />
-      </ArticlesProvider>
-    </>
+    <ArticlesProvider articles={articles}>
+      <SimplePageContent pageContent={newsPage} components={newsPageComponents} />
+    </ArticlesProvider>
   )
 }
 
