@@ -88,7 +88,7 @@ const NavigationContainer = styled.nav`
 
     a {
       min-height: unset;
-      padding: 5px 16px;
+      padding: 8px 16px;
     }
   }
 `
