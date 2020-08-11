@@ -79,6 +79,16 @@ export const GlobalStyle = createGlobalStyle`
       font-weight: bold;
       font-style: italic;
   }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  @media screen and (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
 
   html,
   body {
