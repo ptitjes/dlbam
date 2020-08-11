@@ -32,12 +32,7 @@ export default class MyDocument extends Document {
     // noinspection HtmlRequiredTitleElement
     return (
       <Html lang="fr">
-        <Head>
-          <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link href="/assets/mui.min.css" rel="stylesheet" type="text/css" />
-          <script src="/assets/mui.min.js" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
