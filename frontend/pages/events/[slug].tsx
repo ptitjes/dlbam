@@ -15,7 +15,7 @@ const EventPage: NextPage<EventPageProps> = ({ event }) => {
 
   return (
     <>
-      <PageSeo title={title} description={`Événement du ${date} – ${title}`} />
+      <PageSeo title={title} description={`Événement du ${date} – ${title}`} image={image} />
       <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <Markdown content={content} />

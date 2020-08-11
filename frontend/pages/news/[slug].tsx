@@ -15,7 +15,7 @@ const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
 
   return (
     <>
-      <PageSeo title={title} description={`Actualité du ${publicationDate} – ${title}`} />
+      <PageSeo title={title} description={`Actualité du ${publicationDate} – ${title}`} image={image} />
       <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <Markdown content={content} />

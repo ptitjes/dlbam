@@ -11,6 +11,8 @@ export interface Media extends MediaFormat {
 
 export type MediaFormatName = "thumbnail" | "small" | "medium" | "large"
 
+export const mediaFormats: MediaFormatName[] = ["large", "medium", "small", "thumbnail"]
+
 export interface MediaFormat {
   name: string
   hash: string

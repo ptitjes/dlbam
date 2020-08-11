@@ -15,7 +15,7 @@ const SimplePage: NextPage<SimplePageProps> = ({ page }) => {
 
   return (
     <>
-      <PageSeo title={title} description={description} />
+      <PageSeo title={title} description={description} image={image} />
       <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <Markdown content={content} toc={true} />

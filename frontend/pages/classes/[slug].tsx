@@ -31,7 +31,7 @@ const ClassPage: NextPage<ClassPageProps> = ({ page, classType }) => {
   const { title, image, imagePosition, description } = classType
   return (
     <>
-      <PageSeo title={title} description={`Les informations sur les cours de danses blues – ${title}`} />
+      <PageSeo title={title} description={`Les informations sur les cours de danses blues – ${title}`} image={image} />
       <Banner title={title} image={image} imagePosition={imagePosition} />
       <Container>
         <ClassTypeContext.Provider value={classType}>
