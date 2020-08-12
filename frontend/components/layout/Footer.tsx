@@ -1,6 +1,8 @@
 import React from "react"
-import { FaEnvelope, FaFacebookSquare, FaNewspaper, FaPhoneAlt, FaYoutubeSquare } from "react-icons/fa"
 import styled from "styled-components"
+
+import { FacebookSquare, YoutubeSquare } from "@styled-icons/fa-brands"
+import { Envelope, Newspaper, PhoneAlt } from "@styled-icons/fa-solid"
 
 import { Section } from "../../lib/api"
 import { Container } from "."
@@ -34,7 +36,7 @@ const FooterStyles = styled.div`
     text-decoration: none;
   }
   svg {
-    transform: translate(0, 3px);
+    transform: translate(0, -2px);
   }
 `
 
@@ -51,17 +53,17 @@ const Footer: React.FC<{ sections: Section[] }> = ({ sections }) => {
             <ul>
               <li>
                 <a href="">
-                  <FaNewspaper /> Newsletter
+                  <Newspaper size={20} /> Newsletter
                 </a>
               </li>
               <li>
                 <a href="https://fb.me/dansons.le.blues.mars">
-                  <FaFacebookSquare /> Facebook
+                  <FacebookSquare size={20} /> Facebook
                 </a>
               </li>
               <li>
                 <a href="https://www.youtube.com/channel/UC35nDao3xy7960VImPkZQIg">
-                  <FaYoutubeSquare /> Youtube
+                  <YoutubeSquare size={20} /> Youtube
                 </a>
               </li>
             </ul>
@@ -81,12 +83,12 @@ const Footer: React.FC<{ sections: Section[] }> = ({ sections }) => {
             <ul>
               <li>
                 <a href="tel:+33625136745">
-                  <FaPhoneAlt /> 06 25 13 67 45
+                  <PhoneAlt size={20} /> 06 25 13 67 45
                 </a>
               </li>
               <li>
                 <a href="mailto:contact@dlbam.org">
-                  <FaEnvelope /> contact@dlbam.org
+                  <Envelope size={20} /> contact@dlbam.org
                 </a>
               </li>
             </ul>

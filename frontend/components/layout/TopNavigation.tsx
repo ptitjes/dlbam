@@ -1,7 +1,8 @@
 import { useRouter } from "next/router"
 import React from "react"
-import { FaBars } from "react-icons/fa"
 import styled from "styled-components"
+
+import { Bars } from "@styled-icons/fa-solid"
 
 import { Section } from "../../lib/api"
 import { DropdownMenu, DropdownMenuContextProvider } from "./DropdownMenu"
@@ -152,7 +153,7 @@ const TopNavigation: React.FC<{ sections: Section[] }> = ({ sections }) => {
           </ul>
         </DropdownMenuContextProvider>
         <a href="#" className="hidden@s">
-          <FaBars />
+          <Bars size={20} />
         </a>
       </div>
     </NavigationContainer>

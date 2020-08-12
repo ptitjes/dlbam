@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { FaChevronUp } from "react-icons/fa/index"
 import styled from "styled-components"
+
+import { ChevronUp } from "@styled-icons/fa-solid"
 
 const ScrollToTopContainer = styled.div`
   position: fixed;
@@ -21,7 +22,7 @@ const ScrollToTopContainer = styled.div`
     }
 
     svg {
-      transform: translate(0, 2px);
+      transform: translate(0, -1px);
     }
   }
 `
@@ -51,7 +52,7 @@ const ScrollToTop: React.FC = () => {
         aria-label="Remonter en haut de la page"
         onClick={scrollToTop}
       >
-        <FaChevronUp />
+        <ChevronUp size={18} />
       </button>
     </ScrollToTopContainer>
   )
