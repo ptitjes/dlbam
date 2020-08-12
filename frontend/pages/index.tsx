@@ -7,10 +7,12 @@ import { Markdown } from "../components/markdown"
 import { ArticlesProvider } from "../components/news"
 import { PageSeo } from "../components/seo"
 import { Article, Event, FrontMatter, getAllArticles, getAllEvents, getFrontMatter } from "../lib/api"
+import { Media, getMedia } from "../lib/strapi"
 import { eventsPageComponents } from "./events"
 import { newsPageComponents } from "./news"
 
 interface HomePageProps {
+  image: Media
   frontMatter: FrontMatter
   events: Event[]
   articles: Article[]
@@ -18,14 +20,14 @@ interface HomePageProps {
 
 const homePageComponents = { ...eventsPageComponents, ...newsPageComponents }
 
-const Home: NextPage<HomePageProps> = ({ frontMatter, events, articles }) => {
+const Home: NextPage<HomePageProps> = ({ image, frontMatter, events, articles }) => {
   const { description, content } = frontMatter
 
   return (
     <EventsProvider events={events}>
       <ArticlesProvider articles={articles}>
         <PageSeo description={description} />
-        <Banner imagePath="/uploads/notre_dame_de_la_garde_e1073e7241.jpg" imagePosition="center 20%" />
+        <Banner image={image} imagePosition="center 20%" />
         <Container>
           <Markdown content={content} components={homePageComponents} />
         </Container>
@@ -35,10 +37,11 @@ const Home: NextPage<HomePageProps> = ({ frontMatter, events, articles }) => {
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
+  const image = await getMedia("notre-dame-de-la-garde.jpg")
   const frontMatter = await getFrontMatter()
   const events = await getAllEvents()
   const articles = await getAllArticles()
-  return { props: { frontMatter, events, articles }, revalidate: 1 }
+  return { props: { image, frontMatter, events, articles }, revalidate: 1 }
 }
 
 export default Home

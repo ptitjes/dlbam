@@ -1,6 +1,4 @@
-import fetch from "isomorphic-fetch"
-
-import { Media } from "./strapi"
+import { Media, findAll, findOne, getSingle } from "./strapi"
 
 export const { INTERNAL_API_URL } = process.env
 
@@ -113,36 +111,6 @@ export async function getArticleBySlug(slug: string, preview = false): Promise<A
   return findOne<Article>("articles", { slug, ...status(preview) })
 }
 
-async function findAll<T>(collection: string, query?: DeepPartial<T>): Promise<T[]> {
-  const queryString = query ? `?${createQuery(query)}` : ""
-  const res = await fetch(`${INTERNAL_API_URL}/${collection}${queryString}`)
-  return await res.json()
-}
-
-async function findOne<T>(collection: string, query?: DeepPartial<T>): Promise<T | undefined> {
-  const data = await findAll<T>(collection, query)
-  return data.length > 0 ? data[0] : undefined
-}
-
-async function getSingle<T>(single: string): Promise<T> {
-  const res = await fetch(`${INTERNAL_API_URL}/${single}`)
-  return await res.json()
-}
-
 function status(preview: boolean) {
   return !preview ? { status: Status.Published } : {}
-}
-
-type DeepPartial<T> = {
-  [P in keyof T]?: DeepPartial<T[P]>
-}
-
-function createQuery(query: DeepPartial<any> | any, currentPath: string[] = []): string {
-  if (typeof query === "object") {
-    return Object.entries(query)
-      .map(([key, value]) => createQuery(value, [...currentPath, key]))
-      .join("&")
-  } else {
-    return `${currentPath.join(".")}=${query}`
-  }
 }
