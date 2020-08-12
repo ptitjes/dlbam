@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { Media, MediaFormatName, mediaUrl } from "../../lib/strapi"
+import { Media, MediaFormatName, imageTagProperties } from "../../lib/strapi"
 
 const bannerHeight = 300
 
@@ -77,7 +77,7 @@ export const Banner: React.FC<BannerProps> = ({ surtitle, title, image, imageFor
   return (
     <BannerContainer>
       {image ? (
-        <BannerImage src={mediaUrl(image, imageFormat)} alt={image.alternativeText} position={imagePosition} />
+        <BannerImage {...imageTagProperties(image, imageFormat, "100vw")} position={imagePosition} />
       ) : (
         <BannerImagePlaceholder />
       )}

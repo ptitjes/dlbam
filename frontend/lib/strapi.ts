@@ -39,6 +39,11 @@ export function mediaUrl(media: Media, formatName?: MediaFormatName) {
   return `${EXTERNAL_API_URL}${mediaFormat.url}`
 }
 
+export function imageTagProperties(media: Media, defaultFormat: MediaFormatName = "large", expectedSize: string) {
+  const srcSet = mediaFormats.map((format) => `${mediaUrl(media, format)} ${media.formats[format].width}w`).join(", ")
+  return { src: mediaUrl(media, defaultFormat), srcSet, sizes: expectedSize, alt: media.alternativeText }
+}
+
 export async function findAll<T>(collection: string, query?: DeepPartial<T>): Promise<T[]> {
   const queryString = query ? `?${createQuery(query)}` : ""
   const res = await fetch(`${INTERNAL_API_URL}/${collection}${queryString}`)

@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { Event } from "../../lib/api"
-import { mediaUrl } from "../../lib/strapi"
+import { imageTagProperties } from "../../lib/strapi"
 import { Markdown } from "../markdown"
 
 const EventCardStyles = styled.div`
@@ -81,7 +81,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
     <EventCardStyles>
       <a href={`/events/${event.slug}`}>
         <div className="banner">
-          <EventCardImage src={`${mediaUrl(image, "large")}`} alt={image.alternativeText} position={imagePosition} />
+          <EventCardImage {...imageTagProperties(image, "large", "100vw")} position={imagePosition} />
           <div className="title">
             <h5>{new Date(date).toLocaleDateString("fr")}</h5>
             <h3>{title}</h3>

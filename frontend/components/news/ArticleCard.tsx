@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { Article } from "../../lib/api"
-import { mediaUrl } from "../../lib/strapi"
+import { imageTagProperties } from "../../lib/strapi"
 import { Markdown } from "../markdown"
 
 const ArticleCardStyles = styled.div`
@@ -81,7 +81,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
     <ArticleCardStyles>
       <a href={`/events/${article.slug}`}>
         <div className="banner">
-          <ArticleCardImage src={`${mediaUrl(image, "large")}`} alt={image.alternativeText} position={imagePosition} />
+          <ArticleCardImage {...imageTagProperties(image, "large", "100vw")} position={imagePosition} />
           <div className="title">
             <h5>{new Date(publicationDate).toLocaleDateString("fr")}</h5>
             <h3>{title}</h3>
