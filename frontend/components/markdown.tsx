@@ -7,6 +7,7 @@ import remarkSlug from "remark-slug"
 import unified from "unified"
 
 import { remarkMiniToc } from "../lib/remark-mini-toc"
+import Accordion from "./layout/Accordion"
 import { VideoGrid, YoutubeVideo } from "./video"
 
 export interface ProvidedComponents {
@@ -14,6 +15,7 @@ export interface ProvidedComponents {
 }
 
 const baseComponents: ProvidedComponents = {
+  accordion: Accordion,
   "video-grid": VideoGrid,
   "youtube-video": YoutubeVideo,
 }
