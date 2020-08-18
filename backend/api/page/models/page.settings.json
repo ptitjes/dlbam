@@ -55,6 +55,11 @@
       ],
       "default": "preview",
       "required": true
+    },
+    "showToc": {
+      "type": "boolean",
+      "default": false,
+      "required": false
     }
   }
 }

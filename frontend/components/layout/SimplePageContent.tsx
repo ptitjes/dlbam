@@ -13,14 +13,14 @@ export interface SimplePageProps {
 }
 
 const SimplePageContent: NextPage<SimplePageProps> = ({ pageContent, toc, components }) => {
-  const { surtitle, title, description, image, imagePosition, content } = pageContent
+  const { surtitle, title, description, image, imagePosition, showToc, content } = pageContent
 
   return (
     <>
       <PageSeo title={title} description={description} image={image} />
       <Banner surtitle={surtitle} title={title} image={image} imagePosition={imagePosition} />
       <Container>
-        <Markdown content={content} toc={toc} components={components} />
+        <Markdown content={content} toc={toc || showToc} components={components} />
       </Container>
     </>
   )

@@ -23,6 +23,7 @@ export interface PageContent extends Content {
   description: string
   image: Media
   imagePosition: string
+  showToc?: boolean
   content: string
 }
 
