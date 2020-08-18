@@ -27,7 +27,7 @@ const Home: NextPage<HomePageProps> = ({ image, frontMatter, events, articles })
     <EventsProvider events={events}>
       <ArticlesProvider articles={articles}>
         <PageSeo description={description} />
-        <Banner image={image} imagePosition="center 20%" />
+        <Banner fullScreen={true} image={image} imagePosition="66% 20%" />
         <Container>
           <Markdown content={content} components={homePageComponents} />
         </Container>

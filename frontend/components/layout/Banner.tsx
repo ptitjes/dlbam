@@ -5,8 +5,13 @@ import { Media, MediaFormatName, imageTagProperties } from "../../lib/strapi"
 
 const bannerHeight = 300
 
-const BannerContainer = styled.div`
-  height: ${bannerHeight}px;
+interface BannerContainerProps {
+  fullScreen?: boolean
+}
+
+const BannerContainer = styled.div<BannerContainerProps>`
+  height: ${(props) =>
+    props.fullScreen ? `calc(100vh - ${props.theme.sizes.headerLargeSize}px)` : `${bannerHeight}px`};
   margin-bottom: 20px;
 `
 
@@ -43,6 +48,7 @@ const Title = styled.h1`
 `
 
 interface BannerImageProps {
+  fullScreen?: boolean
   position?: string
 }
 
@@ -50,17 +56,21 @@ const BannerImage = styled.img<BannerImageProps>`
   position: absolute;
   top: 0;
   width: 100%;
-  height: ${(props) => props.theme.sizes.headerLargeSize + 300}px;
+  height: ${(props) => (props.fullScreen ? "100%" : `${props.theme.sizes.headerLargeSize + bannerHeight}px`)};
   object-fit: cover;
   object-position: ${(props) => props.position || "center 20%"};
   filter: brightness(66%);
 `
 
-const BannerImagePlaceholder = styled.div`
+interface BannerImagePlaceholderProps {
+  fullScreen?: boolean
+}
+
+const BannerImagePlaceholder = styled.div<BannerImagePlaceholderProps>`
   position: absolute;
   top: 0;
   width: 100%;
-  height: ${(props) => props.theme.sizes.headerLargeSize + 300}px;
+  height: ${(props) => (props.fullScreen ? "100%" : `${props.theme.sizes.headerLargeSize + bannerHeight}px`)};
   background-color: ${(props) => props.theme.colors.banner};
 `
 
@@ -68,18 +78,24 @@ interface BannerProps {
   surtitle?: string
   title?: string
 
+  fullScreen?: boolean
+
   image?: Media
   imageFormat?: MediaFormatName
   imagePosition?: string
 }
 
-export const Banner: React.FC<BannerProps> = ({ surtitle, title, image, imageFormat, imagePosition }) => {
+export const Banner: React.FC<BannerProps> = ({ surtitle, title, fullScreen, image, imageFormat, imagePosition }) => {
   return (
-    <BannerContainer>
+    <BannerContainer fullScreen={fullScreen}>
       {image ? (
-        <BannerImage {...imageTagProperties(image, imageFormat, "100vw")} position={imagePosition} />
+        <BannerImage
+          fullScreen={fullScreen}
+          {...imageTagProperties(image, imageFormat, "100vw")}
+          position={imagePosition}
+        />
       ) : (
-        <BannerImagePlaceholder />
+        <BannerImagePlaceholder fullScreen={fullScreen} />
       )}
       <TitleContainer>
         {surtitle && <Surtitle>{surtitle}</Surtitle>}
