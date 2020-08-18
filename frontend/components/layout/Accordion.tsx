@@ -18,6 +18,7 @@ const AccordionStyles = styled.div`
     transition: max-height 0.15s ease-out;
 
     font-style: italic;
+    background-color: #f2eff2;
   }
 
   .collapsible-body > p {
