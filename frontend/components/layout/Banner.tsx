@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { Media, MediaFormatName, imageTagProperties } from "../../lib/strapi"
+import { Media, MediaFormatName, imageTagProperties, mediaUrl } from "../../lib/strapi"
 
 const bannerHeight = 300
 
@@ -62,6 +62,21 @@ const BannerImage = styled.img<BannerImageProps>`
   filter: brightness(66%);
 `
 
+interface BannerVideoProps {
+  fullScreen?: boolean
+  position?: string
+}
+
+const BannerVideo = styled.video<BannerVideoProps>`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: ${(props) => (props.fullScreen ? "100%" : `${props.theme.sizes.headerLargeSize + bannerHeight}px`)};
+  object-fit: cover;
+  object-position: ${(props) => props.position || "center 20%"};
+  filter: brightness(66%);
+`
+
 interface BannerImagePlaceholderProps {
   fullScreen?: boolean
 }
@@ -89,11 +104,17 @@ export const Banner: React.FC<BannerProps> = ({ surtitle, title, fullScreen, ima
   return (
     <BannerContainer fullScreen={fullScreen}>
       {image ? (
-        <BannerImage
-          fullScreen={fullScreen}
-          {...imageTagProperties(image, imageFormat, "100vw")}
-          position={imagePosition}
-        />
+        !image.mime.startsWith("video/") ? (
+          <BannerImage
+            fullScreen={fullScreen}
+            {...imageTagProperties(image, imageFormat, "100vw")}
+            position={imagePosition}
+          />
+        ) : (
+          <BannerVideo fullScreen={fullScreen} position={imagePosition} autoPlay muted loop>
+            <source src={mediaUrl(image)} type={image.mime} />
+          </BannerVideo>
+        )
       ) : (
         <BannerImagePlaceholder fullScreen={fullScreen} />
       )}
