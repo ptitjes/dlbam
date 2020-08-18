@@ -8,6 +8,10 @@ const TwoColumnsGrid = styled.ul`
   column-gap: 16px;
   row-gap: 16px;
 
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
   @media (min-width: ${breakpoints.small}px) {
     &.span-first li:first-child {
       grid-column-end: span 2;

@@ -107,15 +107,30 @@ export const GlobalStyle = createGlobalStyle`
     font-family: Coiny;
     font-weight: normal;
   }
-  
-  ul {
+
+  nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
   }
-  
+
   a {
     color: #0070f3
+  }
+
+  table {
+    width: 100%;
+    text-align: center;
+    border-spacing: 0px;
+    
+    th {
+      border-bottom: solid 1px currentColor;
+    }
+    th, td {
+      &:not(:last-child) {
+        border-right: solid 1px currentColor;
+      }
+    }
   }
 
   :target::before {
