@@ -1,6 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 
+import { ChevronDown } from "@styled-icons/fa-solid"
+
 import { Media, MediaFormatName, imageTagProperties, mediaUrl } from "../../lib/strapi"
 
 const bannerHeight = 300
@@ -15,8 +17,13 @@ const BannerContainer = styled.div<BannerContainerProps>`
   margin-bottom: 20px;
 `
 
-const TitleContainer = styled.div`
-  height: ${bannerHeight}px;
+interface TitleContainerProps {
+  fullScreen?: boolean
+}
+
+const TitleContainer = styled.div<TitleContainerProps>`
+  height: ${(props) =>
+    props.fullScreen ? `calc(100vh - ${props.theme.sizes.headerLargeSize}px)` : `${bannerHeight}px`};
   margin-top: ${(props) => props.theme.sizes.headerLargeSize}px;
   position: relative;
   display: flex;
@@ -89,6 +96,13 @@ const BannerImagePlaceholder = styled.div<BannerImagePlaceholderProps>`
   background-color: ${(props) => props.theme.colors.banner};
 `
 
+const ScrollIndicatorContainer = styled.div`
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+`
+
 interface BannerProps {
   surtitle?: string
   title?: string
@@ -118,9 +132,14 @@ export const Banner: React.FC<BannerProps> = ({ surtitle, title, fullScreen, ima
       ) : (
         <BannerImagePlaceholder fullScreen={fullScreen} />
       )}
-      <TitleContainer>
+      <TitleContainer fullScreen={fullScreen}>
         {surtitle && <Surtitle>{surtitle}</Surtitle>}
         {title && <Title>{title}</Title>}
+        {fullScreen && (
+          <ScrollIndicatorContainer>
+            <ChevronDown size={40} color="ghostwhite" />
+          </ScrollIndicatorContainer>
+        )}
       </TitleContainer>
     </BannerContainer>
   )
