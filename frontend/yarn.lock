@@ -1110,26 +1110,34 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.4.4.tgz#11d5db19bd178936ec89cd84519c4de439574398"
   integrity sha512-1oO6+dN5kdIA3sKPZhRGJTfGVP4SWV6KqlMOwry4J3HfyD68sl/3KmG7DeYUzvN+RbhXDnv/D8vNNB8168tAMg==
 
-"@styled-icons/fa-brands@^10.14.1":
-  version "10.14.1"
-  resolved "http://verdaccio.volta-medical.fr/@styled-icons%2ffa-brands/-/fa-brands-10.14.1.tgz#36fd2d2419758c226cb5ce7e5d24d34fcbd6afbc"
-  integrity sha512-am2sm5mzXr0FkSEpO6oV6Gk1gWSJsEF3RGjRO1qgQsd84JZi8MhlZEmZrLhVRA5c9yUolzLvPLif/jiKpz5ofw==
+"@styled-icons/bootstrap@^10.15.1":
+  version "10.15.1"
+  resolved "http://verdaccio.volta-medical.fr/@styled-icons%2fbootstrap/-/bootstrap-10.15.1.tgz#6cf858a1b803fa9552760e5a145eaf0e0d35f5df"
+  integrity sha512-qGtg+KUXseY9LBukWc803o6Lj/08XyZ+VsyAnk+4DsFFuEzknj5Mfonneu36NR+HqBOCmvPuPEIjXrn4R56xqA==
   dependencies:
     "@babel/runtime" "^7.10.5"
     "@styled-icons/styled-icon" "^10.6.0"
 
-"@styled-icons/fa-regular@^10.14.1":
-  version "10.14.1"
-  resolved "http://verdaccio.volta-medical.fr/@styled-icons%2ffa-regular/-/fa-regular-10.14.1.tgz#7e6c0a4fb8c5dab6cde8907a714f87261539d1c1"
-  integrity sha512-ZofbqjPTLY6eDskg1fHaBKXy+eDLnIZ77yb7RMTcYYkyAJkQ7z67WNwuZPgNOUEgNXdnMNcOQhmmYoBY19PHTQ==
+"@styled-icons/fa-brands@^10.15.1":
+  version "10.15.1"
+  resolved "http://verdaccio.volta-medical.fr/@styled-icons%2ffa-brands/-/fa-brands-10.15.1.tgz#6480871c80aada52a613a5397e9ae8c207fe280f"
+  integrity sha512-WDvZGEOnL1035DhYh1xziplzmIoAd5TVOXR/gv/Kn0UFz7QhZBGlwKVpfB/kTTAMOHrcg6x1e5Y9y8sItDwVzA==
   dependencies:
     "@babel/runtime" "^7.10.5"
     "@styled-icons/styled-icon" "^10.6.0"
 
-"@styled-icons/fa-solid@^10.14.1":
-  version "10.14.1"
-  resolved "http://verdaccio.volta-medical.fr/@styled-icons%2ffa-solid/-/fa-solid-10.14.1.tgz#d17952937906a1b6b93a0dfc9b620736c28e63f1"
-  integrity sha512-uSHunuZy1ZkG9lfVVH/f2MWzyvNgkR+l6c/OhVMxFflmqsDhzz+SmAuP9MMWmr+wI7P9+wMwi+doJ11eDaAGOg==
+"@styled-icons/fa-regular@^10.15.1":
+  version "10.15.1"
+  resolved "http://verdaccio.volta-medical.fr/@styled-icons%2ffa-regular/-/fa-regular-10.15.1.tgz#36c24a0be6c99813d546d0c96f74764ce4af86aa"
+  integrity sha512-lWfoDfAz/wwo3yfSTNgaqeuXNIW9PkdEFYEnwCD4MKbtzzvvyFYZ7Qj4W02dZnmbSf+zTJtrPjlbQ86KQpYcjw==
+  dependencies:
+    "@babel/runtime" "^7.10.5"
+    "@styled-icons/styled-icon" "^10.6.0"
+
+"@styled-icons/fa-solid@^10.15.1":
+  version "10.15.1"
+  resolved "http://verdaccio.volta-medical.fr/@styled-icons%2ffa-solid/-/fa-solid-10.15.1.tgz#3eb757d5de275659f723ad11458b57f1e9920729"
+  integrity sha512-IpDfatSuy0SL6Cv9wI2y+fYRjvvjGP9iTG4AExFU2KR3AVFsZTPNwFH8dQzd1vhfmiyLE0bd+sNbR55S6iySfQ==
   dependencies:
     "@babel/runtime" "^7.10.5"
     "@styled-icons/styled-icon" "^10.6.0"

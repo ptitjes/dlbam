@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { ChevronDown } from "@styled-icons/fa-solid"
+import { ChevronDoubleDown } from "@styled-icons/bootstrap"
 
 import { Media, MediaFormatName, imageTagProperties, mediaUrl } from "../../lib/strapi"
 
@@ -101,6 +101,7 @@ const ScrollIndicatorContainer = styled.div`
   bottom: 5%;
   left: 50%;
   transform: translate(-50%, 0);
+  opacity: 0.8;
 `
 
 interface BannerProps {
@@ -137,7 +138,7 @@ export const Banner: React.FC<BannerProps> = ({ surtitle, title, fullScreen, ima
         {title && <Title>{title}</Title>}
         {fullScreen && (
           <ScrollIndicatorContainer>
-            <ChevronDown size={40} color="ghostwhite" />
+            <ChevronDoubleDown size={40} color="ghostwhite" />
           </ScrollIndicatorContainer>
         )}
       </TitleContainer>
