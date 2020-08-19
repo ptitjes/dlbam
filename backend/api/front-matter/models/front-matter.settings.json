@@ -14,6 +14,31 @@
     },
     "description": {
       "type": "text"
+    },
+    "surtitle": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "center center"
+    },
+    "showToc": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

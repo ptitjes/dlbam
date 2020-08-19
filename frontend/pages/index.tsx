@@ -7,12 +7,10 @@ import { Markdown } from "../components/markdown"
 import { ArticlesProvider } from "../components/news"
 import { PageSeo } from "../components/seo"
 import { Article, Event, FrontMatter, getAllArticles, getAllEvents, getFrontMatter } from "../lib/api"
-import { Media, getMedia } from "../lib/strapi"
 import { eventsPageComponents } from "./events"
 import { newsPageComponents } from "./news"
 
 interface HomePageProps {
-  image: Media
   frontMatter: FrontMatter
   events: Event[]
   articles: Article[]
@@ -20,16 +18,16 @@ interface HomePageProps {
 
 const homePageComponents = { ...eventsPageComponents, ...newsPageComponents }
 
-const Home: NextPage<HomePageProps> = ({ image, frontMatter, events, articles }) => {
-  const { description, content } = frontMatter
+const Home: NextPage<HomePageProps> = ({ frontMatter, events, articles }) => {
+  const { description, title, surtitle, showToc, content, image, imagePosition } = frontMatter
 
   return (
     <EventsProvider events={events}>
       <ArticlesProvider articles={articles}>
         <PageSeo description={description} />
-        <Banner fullScreen={true} image={image} imagePosition="66% 20%" title="Venez danser le Blues !" />
+        <Banner fullScreen={true} image={image} imagePosition={imagePosition} title={title} surtitle={surtitle} />
         <Container>
-          <Markdown content={content} components={homePageComponents} />
+          <Markdown content={content} toc={showToc} components={homePageComponents} />
         </Container>
       </ArticlesProvider>
     </EventsProvider>
@@ -37,11 +35,10 @@ const Home: NextPage<HomePageProps> = ({ image, frontMatter, events, articles })
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const image = await getMedia("video-teaser.m4v")
   const frontMatter = await getFrontMatter()
   const events = await getAllEvents()
   const articles = await getAllArticles()
-  return { props: { image, frontMatter, events, articles }, revalidate: 1 }
+  return { props: { frontMatter, events, articles }, revalidate: 1 }
 }
 
 export default Home

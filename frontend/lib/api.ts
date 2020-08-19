@@ -12,11 +12,6 @@ export interface Content {
   status: Status
 }
 
-export interface FrontMatter {
-  description: string
-  content: string
-}
-
 export interface PageContent extends Content {
   title: string
   surtitle?: string
@@ -26,6 +21,8 @@ export interface PageContent extends Content {
   showToc?: boolean
   content: string
 }
+
+export interface FrontMatter extends PageContent {}
 
 export interface Section {
   id: number
