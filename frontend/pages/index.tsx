@@ -37,7 +37,7 @@ const Home: NextPage<HomePageProps> = ({ image, frontMatter, events, articles })
 }
 
 export const getStaticProps: GetStaticProps<HomePageProps> = async () => {
-  const image = await getMedia("video-teaser.mp4")
+  const image = await getMedia("video-teaser.m4v")
   const frontMatter = await getFrontMatter()
   const events = await getAllEvents()
   const articles = await getAllArticles()

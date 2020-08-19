@@ -125,7 +125,7 @@ export const Banner: React.FC<BannerProps> = ({ surtitle, title, fullScreen, ima
             position={imagePosition}
           />
         ) : (
-          <BannerVideo fullScreen={fullScreen} position={imagePosition} autoPlay muted loop>
+          <BannerVideo fullScreen={fullScreen} position={imagePosition} autoPlay={true} muted={true} loop={true}>
             <source src={mediaUrl(image)} type={image.mime} />
           </BannerVideo>
         )
