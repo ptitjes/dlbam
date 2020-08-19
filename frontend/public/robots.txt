@@ -1,3 +1,5 @@
 User-Agent: *
 Allow: /
 Disallow: /api/
+
+Sitemap: https://dlbam.org/sitemap.xml

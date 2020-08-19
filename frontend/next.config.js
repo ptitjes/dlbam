@@ -9,4 +9,13 @@ module.exports = withBundleAnalyzer({
     INTERNAL_API_URL: process.env.INTERNAL_API_URL,
     EXTERNAL_API_URL: process.env.EXTERNAL_API_URL,
   },
+
+  async rewrites() {
+    return [
+      {
+        source: "/sitemap.xml",
+        destination: "/api/sitemap",
+      },
+    ]
+  },
 })

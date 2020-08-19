@@ -29,6 +29,7 @@
     "remark-html": "^11.0.2",
     "remark-react": "^7.0.1",
     "remark-slug": "^6.0.0",
+    "sitemap": "^6.2.0",
     "styled-components": "^5.1.1",
     "styled-normalize": "^8.0.7",
     "uikit": "^3.5.5",
