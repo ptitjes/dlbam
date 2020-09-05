@@ -30,7 +30,7 @@ export function useShrinkableRef() {
 
   useEffect(() => {
     toggleShrunk()
-    window.addEventListener("scroll", toggleShrunk)
+    window.addEventListener("scroll", toggleShrunk, { passive: true })
     return () => {
       window.removeEventListener("scroll", toggleShrunk)
     }
