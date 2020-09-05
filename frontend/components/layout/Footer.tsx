@@ -20,11 +20,12 @@ const FooterStyles = styled.div`
 
   .copyright {
     text-align: center;
+    font-size: 0.75rem;
   }
 
   h1 {
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 1.1rem;
+    line-height: 1.4;
   }
 
   ul {

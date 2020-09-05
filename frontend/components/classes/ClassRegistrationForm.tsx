@@ -12,13 +12,17 @@ const Form = styled.form`
   margin: 24px 0;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   column-gap: 16px;
 
   @media (min-width: ${breakpoints.small}px) {
     & > .full-row {
       grid-column-end: span 2;
     }
+  }
+
+  @media (max-width: ${breakpoints.extraSmall - 1}px) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 `
 

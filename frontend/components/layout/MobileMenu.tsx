@@ -10,7 +10,7 @@ const MobileMenuContainer = styled.nav`
 
   color: ghostwhite;
   font-family: Coiny;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: normal;
 
   .menu-content {
@@ -103,7 +103,7 @@ const MobileMenuContainer = styled.nav`
     }
 
     a {
-      font-size: 0.8rem;
+      font-size: 1rem;
     }
   }
 `

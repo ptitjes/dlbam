@@ -2,6 +2,7 @@ import { DefaultTheme, createGlobalStyle } from "styled-components"
 import normalize from "styled-normalize"
 
 export const breakpoints = {
+  extraSmall: 360,
   small: 640,
   medium: 960,
   large: 1200,
@@ -101,6 +102,10 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
+
+    @media (max-width: ${breakpoints.extraSmall - 1}px) {
+      font-size: 15px;
+    }
   }
   
   h1, h2, h3, h4, h5, h6 {

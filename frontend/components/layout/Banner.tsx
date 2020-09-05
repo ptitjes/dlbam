@@ -37,21 +37,23 @@ const TitleContainer = styled.div<TitleContainerProps>`
 
 const Surtitle = styled.p`
   font-family: Coiny;
-  font-size: 30px;
+  font-size: 1.6rem;
   line-height: 0.9;
   font-weight: normal;
   text-align: center;
   color: ghostwhite;
   margin-bottom: -24px;
+  padding: 0 10px;
 `
 
 const Title = styled.h1`
   font-family: Coiny;
-  font-size: 60px;
+  font-size: 3.3rem;
   line-height: 0.9;
   font-weight: normal;
   text-align: center;
   color: ghostwhite;
+  padding: 0 10px;
 `
 
 interface BannerImageProps {

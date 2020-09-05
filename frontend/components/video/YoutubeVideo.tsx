@@ -19,7 +19,7 @@ const YoutubeVideoContainer = styled.div`
   .caption {
     width: 100%;
     margin: 10px 0;
-    font-size: 90%;
+    font-size: 0.9rem;
     text-align: center;
   }
 `

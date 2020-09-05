@@ -4,7 +4,7 @@ import { breakpoints } from "../theme"
 
 const TwoColumnsGrid = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   column-gap: 16px;
   row-gap: 16px;
 
