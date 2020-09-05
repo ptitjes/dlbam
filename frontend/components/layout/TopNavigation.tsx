@@ -2,11 +2,12 @@ import { useRouter } from "next/router"
 import React from "react"
 import styled from "styled-components"
 
-import { Bars } from "@styled-icons/fa-solid"
-
 import { Section } from "../../lib/api"
+import { getSubMenuElements } from "../section-contents"
+import { BurgerIcon } from "./BurgerIcon"
 import { DropdownMenu, DropdownMenuContextProvider } from "./DropdownMenu"
 import Logo from "./Logo"
+import ShrinkingHeader from "./ShrinkingHeader"
 
 const NavigationContainer = styled.nav`
   max-width: 900px;
@@ -25,6 +26,11 @@ const NavigationContainer = styled.nav`
 
   padding-left: 15px;
   padding-right: 15px;
+
+  color: ghostwhite;
+  font-family: Coiny;
+  font-size: 1rem;
+  font-weight: normal;
 
   .navbar-left,
   .navbar-right {
@@ -94,27 +100,16 @@ const NavigationContainer = styled.nav`
   }
 `
 
-const allDynamicContent: { [slug: string]: [string, string][] } = {
-  classes: [["Les sessions courtes", "/classes/short-sessions"]],
-}
-
 const NavigationSection: React.FC<{ section: Section }> = ({ section }) => {
   const router = useRouter()
-
   const activated = router.pathname.startsWith(`/${section.slug}`)
-
-  const hasDynamicContent = false
-  const staticPages = section.pages
-  const hasSubMenu = hasDynamicContent || staticPages.length > 0
-
-  const staticContent = staticPages.map((page) => [page.title, `/${section.slug}/${page.slug}`])
-  const dynamicContent = allDynamicContent[section.slug] || []
-  const subMenuElements = [...dynamicContent, ...staticContent]
+  const subMenuElements = getSubMenuElements(section)
 
   return (
     <li className={activated ? "activated" : undefined}>
-      {!hasSubMenu && <a href={`/${section.slug}`}>{section.title}</a>}
-      {hasSubMenu && (
+      {subMenuElements.length === 0 ? (
+        <a href={`/${section.slug}`}>{section.title}</a>
+      ) : (
         <DropdownMenu id={section.slug} title={section.title}>
           <ul className="dropdown">
             {subMenuElements.map(([title, path]) => (
@@ -129,34 +124,38 @@ const NavigationSection: React.FC<{ section: Section }> = ({ section }) => {
   )
 }
 
-const TopNavigation: React.FC<{ sections: Section[] }> = ({ sections }) => {
+const TopNavigation: React.FC<{
+  sections: Section[]
+  menuOpen: boolean
+  setMenuOpen: (f: (open: boolean) => boolean) => void
+}> = ({ sections, menuOpen, setMenuOpen }) => {
   return (
-    <NavigationContainer>
-      <div className="navbar-left">
-        <ul>
-          <li>
-            <a href="/">
-              <Logo />
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div className="navbar-right">
-        <DropdownMenuContextProvider>
-          <ul className="visible@s">
-            {sections
-              .filter((section) => section.displayInNavigation)
-              .map((section) => (
-                <NavigationSection key={section.id} section={section} />
-              ))}
+    <ShrinkingHeader menuOpen={menuOpen}>
+      <NavigationContainer>
+        <div className="navbar-left">
+          <ul>
+            <li>
+              <a href="/">
+                <Logo menuOpen={menuOpen} />
+              </a>
+            </li>
           </ul>
-        </DropdownMenuContextProvider>
-        <a href="#" className="hidden@s">
-          <Bars size={20} />
-        </a>
-      </div>
-    </NavigationContainer>
+        </div>
+
+        <div className="navbar-right">
+          <DropdownMenuContextProvider>
+            <ul className="visible@s">
+              {sections
+                .filter((section) => section.displayInNavigation)
+                .map((section) => (
+                  <NavigationSection key={section.id} section={section} />
+                ))}
+            </ul>
+          </DropdownMenuContextProvider>
+          <BurgerIcon menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        </div>
+      </NavigationContainer>
+    </ShrinkingHeader>
   )
 }
 

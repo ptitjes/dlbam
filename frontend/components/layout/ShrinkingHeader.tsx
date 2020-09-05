@@ -6,19 +6,14 @@ const HeaderDiv = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1;
+  z-index: 200;
 
-  color: ghostwhite;
-  font-family: Coiny;
-  font-size: 1rem;
-  font-weight: normal;
-
-  transition: 0.5s;
+  transition: 0.2s;
 
   background-color: transparent;
   height: ${(props) => props.theme.sizes.headerLargeSize}px;
 
-  .shrunk & {
+  .shrunk &:not(.menu-open) {
     background-color: ${(props) => props.theme.colors.banner};
     height: ${(props) => props.theme.sizes.headerSmallSize}px;
   }
@@ -29,21 +24,21 @@ const HeaderDiv = styled.div`
   align-items: stretch;
   align-content: center;
 
-  & div {
+  & > div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-content: stretch;
 
-    & * {
+    & > * {
       flex-grow: 1;
     }
   }
 `
 
-const ShrinkingHeader: React.FC = ({ children }) => {
+const ShrinkingHeader: React.FC<{ menuOpen: boolean }> = ({ children, menuOpen }) => {
   return (
-    <HeaderDiv>
+    <HeaderDiv className={menuOpen ? "menu-open" : ""}>
       <div>{children}</div>
     </HeaderDiv>
   )
