@@ -83,7 +83,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
         <div className="banner">
           <EventCardImage {...imageTagProperties(image, "large", "100vw")} position={imagePosition} />
           <div className="title">
-            <h5>{new Date(date).toLocaleDateString("fr")}</h5>
+            <h5>{new Date(date).toLocaleDateString("fr-FR")}</h5>
             <h3>{title}</h3>
           </div>
         </div>

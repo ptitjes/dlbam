@@ -10,14 +10,11 @@ interface EventPageProps {
 
 const EventPage: NextPage<EventPageProps> = ({ event }) => {
   const { title, date } = event
+  const dateString = new Date(date).toLocaleDateString("fr-FR")
 
   return (
     <SimplePageContent
-      pageContent={{
-        ...event,
-        surtitle: new Date(date).toLocaleDateString("fr"),
-        description: `Événement du ${date} – ${title}`,
-      }}
+      pageContent={{ ...event, surtitle: dateString, description: `Événement du ${dateString} – ${title}` }}
     />
   )
 }

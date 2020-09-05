@@ -10,8 +10,13 @@ interface ArticlePageProps {
 
 const ArticlePage: NextPage<ArticlePageProps> = ({ article }) => {
   const { title, publicationDate } = article
+  const dateString = new Date(publicationDate).toLocaleDateString("fr-FR")
 
-  return <SimplePageContent pageContent={{ ...article, description: `Actualité du ${publicationDate} – ${title}` }} />
+  return (
+    <SimplePageContent
+      pageContent={{ ...article, surtitle: dateString, description: `Actualité du ${dateString} – ${title}` }}
+    />
+  )
 }
 
 export const getStaticProps: GetStaticProps<ArticlePageProps> = async ({ params, preview }) => {

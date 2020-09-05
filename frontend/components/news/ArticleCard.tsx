@@ -83,7 +83,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article }) => {
         <div className="banner">
           <ArticleCardImage {...imageTagProperties(image, "large", "100vw")} position={imagePosition} />
           <div className="title">
-            <h5>{new Date(publicationDate).toLocaleDateString("fr")}</h5>
+            <h5>{new Date(publicationDate).toLocaleDateString("fr-FR")}</h5>
             <h3>{title}</h3>
           </div>
         </div>
