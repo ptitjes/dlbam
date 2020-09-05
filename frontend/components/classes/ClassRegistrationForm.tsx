@@ -15,6 +15,11 @@ const Form = styled.form`
   grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   column-gap: 16px;
 
+  & > .mui-radio + .mui-radio,
+  & > .mui-checkbox + .mui-checkbox {
+    margin-top: 10px;
+  }
+
   @media (min-width: ${breakpoints.small}px) {
     & > .full-row {
       grid-column-end: span 2;
@@ -59,8 +64,8 @@ const ClassRegistrationForm: React.FC = () => {
         ))}
       </div>
       <div className="full-row">
-        <h3>Adhésion à Mars Blues Dancers ou au CIAM :</h3>
-        <p>Pour suivre les cours, vous devez être adhérent.e de Mars Blues Dancers ou du CIAM.</p>
+        <h3>Adhésion à Mars Blues Dancers :</h3>
+        <p>Pour suivre les cours, vous devez être adhérent.e à l'association Mars Blues Dancers.</p>
       </div>
       <div className="mui-radio">
         <label>
@@ -71,23 +76,11 @@ const ClassRegistrationForm: React.FC = () => {
       <div className="mui-radio">
         <label>
           <input type="radio" name="membership-dlbam-done" />
-          Je suis déjà adhérent de l'association
-        </label>
-      </div>
-      <div className="mui-radio">
-        <label>
-          <input type="radio" name="membership-ciam" />
-          J'adhére au CIAM (20€)
-        </label>
-      </div>
-      <div className="mui-radio">
-        <label>
-          <input type="radio" name="membership-ciam-done" />
-          Je suis déjà adhérent du CIAM
+          Je suis déjà adhérent.e de l'association
         </label>
       </div>
       <button type="submit" className="mui-btn mui-btn--primary full-row">
-        C'est parti !
+        Je m'inscris !
       </button>
     </Form>
   )
