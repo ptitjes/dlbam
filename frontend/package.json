@@ -23,6 +23,7 @@
     "next-seo": "^4.7.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "^6.7.2",
     "react-popper": "^2.2.3",
     "rehype-parse": "^7.0.1",
     "remark": "^11.0.2",
