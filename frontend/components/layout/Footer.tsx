@@ -58,12 +58,12 @@ const Footer: React.FC<{ sections: Section[] }> = ({ sections }) => {
                 </a>
               </li>
               <li>
-                <a href="https://fb.me/dansons.le.blues.mars">
+                <a href="https://fb.me/dansons.le.blues.mars" target="_blank">
                   <FacebookSquare size={20} /> Facebook
                 </a>
               </li>
               <li>
-                <a href="https://www.youtube.com/channel/UC35nDao3xy7960VImPkZQIg">
+                <a href="https://www.youtube.com/channel/UC35nDao3xy7960VImPkZQIg" target="_blank">
                   <YoutubeSquare size={20} /> Youtube
                 </a>
               </li>
