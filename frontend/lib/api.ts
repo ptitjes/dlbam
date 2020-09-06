@@ -1,7 +1,5 @@
 import { Media, findAll, findOne, getSingle } from "./strapi"
 
-export const { INTERNAL_API_URL } = process.env
-
 enum Status {
   Preview = "preview",
   Published = "published",
@@ -58,6 +56,7 @@ export interface Article extends Content {
 }
 
 export interface ClassType extends PageContent {
+  id: number
   slug: string
   classes: Class[]
 }

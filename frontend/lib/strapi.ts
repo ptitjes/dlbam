@@ -1,9 +1,9 @@
 import fetch from "isomorphic-fetch"
 
-import { INTERNAL_API_URL } from "./api"
 import { throwError } from "./utils"
 
-export const { EXTERNAL_API_URL } = process.env
+const INTERNAL_API_URL = process.env.INTERNAL_API_URL
+export const EXTERNAL_API_URL = process.env.EXTERNAL_API_URL
 
 export interface Media extends MediaFormat {
   id: number

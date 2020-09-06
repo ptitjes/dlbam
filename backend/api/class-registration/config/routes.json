@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/class-registrations",
+      "handler": "class-registration.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/class-registrations/count",
+      "handler": "class-registration.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/class-registrations/:id",
+      "handler": "class-registration.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/class-registrations",
+      "handler": "class-registration.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/class-registrations/:id",
+      "handler": "class-registration.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/class-registrations/:id",
+      "handler": "class-registration.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

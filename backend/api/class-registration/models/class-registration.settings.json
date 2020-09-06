@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "class_registrations",
+  "info": {
+    "name": "Class Registration"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "classType": {
+      "model": "class-type"
+    },
+    "classes": {
+      "collection": "class"
+    },
+    "firstname": {
+      "type": "string",
+      "required": true
+    },
+    "lastname": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "membership": {
+      "type": "enumeration",
+      "enum": [
+        "new",
+        "already"
+      ],
+      "required": true,
+      "default": "new"
+    }
+  }
+}
